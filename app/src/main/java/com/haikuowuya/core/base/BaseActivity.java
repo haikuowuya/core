@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.haikuowuya.core.R;
+import com.haikuowuya.core.util.ToastUtils;
 
 /**
  *
@@ -42,6 +44,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
     {
         Toast.makeText(mActivity, text, Toast.LENGTH_SHORT).show();
     }
+    public void  showCroutonToast(String text)
+    {
+        ToastUtils.showCrouton(mActivity, text, getContentViewGroup());
+    }
 
     @Override
     public void setContentView(int layoutResID)
@@ -51,6 +57,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
         View contentView = LayoutInflater.from(mActivity).inflate(layoutResID, null);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
         mFrameContainer.addView(contentView, layoutParams);
+    }
+
+    public ViewGroup getContentViewGroup()
+    {
+        return  mFrameContainer;
     }
 
 

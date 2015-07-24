@@ -45,6 +45,8 @@ public abstract class BaseListAcitivity extends BaseActivity
                 public void run()
                 {
                     mPullRefreshLayout.setRefreshing(false);
+                    showCroutonToast("刷新成功");
+
                 }
             }, 2000);
         }
