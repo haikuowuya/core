@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PullRefreshLayout">
+        <attr name="type" format="enum">
+            <enum name="material" value="0"/>
+            <enum name="circles" value="1"/>
+            <enum name="water_drop" value="2"/>
+            <enum name="ring" value="3"/>
+            <enum name="arc" value="4"/>
+        </attr>
+        <attr name="colors" format="reference"/>
+    </declare-styleable>
+    <!--r g b y-->
+    <integer-array name="google_colors">
+        <item>@color/google_red</item>
+        <item>@color/google_green</item>
+        <item>@color/google_blue</item>
+        <item>@color/google_yellow</item>
+    </integer-array>
+    <color name="google_red">#FFC93437</color>
+    <color name="google_green">#FF34A350</color>
+    <color name="google_blue">#FF375BF1</color>
+    <color name="google_yellow">#FFF7D23E</color>
+</resources>
