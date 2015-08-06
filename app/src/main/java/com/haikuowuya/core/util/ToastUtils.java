@@ -2,6 +2,9 @@
 
 import android.app.Activity;
 import android.view.ViewGroup;
+
+import com.haikuowuya.core.base.BaseActivity;
+
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
@@ -22,5 +25,10 @@ public class ToastUtils
         Crouton crouton = Crouton.makeText(activity, text, style, viewGroup);
         crouton.show();
 
+    }
+    public static void showCrouton(BaseActivity activity , CharSequence text)
+    {
+        Crouton crouton = Crouton.makeText(activity, text,  Style.ALERT, activity.getContentViewGroup());
+        crouton.show();
     }
 }

@@ -2,6 +2,7 @@
     <string name="app_name">HKWY</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="tv_wx_key">wx48536c9c870308eb</string>
     <string-array name="list_arrays">
         <item>水滴模式</item>
         <item>圆形模式</item>

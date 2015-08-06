@@ -23,4 +23,9 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile files('libs/crouton_toast.jar')
+    compile files('libs/libammsdk.jar')
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.mcxiaoke.volley:library:1.0.18'
+    compile 'com.squareup.okio:okio:1.5.0'
+    compile 'com.google.code.gson:gson:2.3.1'
 }

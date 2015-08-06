@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tv_activity_wx">微信/微信入口</string>
+
+    <string name="tv_activity_send_to_wx">微信/发送到微信</string>
+    <string name="tv_activity_from_wx">微信/从微信接收</string>
+    <string name="tv_activity_show_wx">微信/显示微信请求的消息</string>
+    <string name="tv_activity_ptr">下拉刷新/下拉刷新入口</string>
+</resources>

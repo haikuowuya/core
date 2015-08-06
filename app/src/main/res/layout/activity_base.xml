@@ -2,12 +2,34 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_height="match_parent"
               android:fitsSystemWindows="true"
               android:orientation="vertical">
 
-    <FrameLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/color_title_background_color">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_centerVertical="true"
+            android:layout_height="40dp"/>
+        <TextView
+            android:id="@+id/tv_center_title"
+            android:textColor="#FFFFFFFF"
+            android:textSize="16sp"
+            tools:text="标题"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
 
+    </RelativeLayout>
+
+    <FrameLayout
+        android:background="#FFF2F2F2"
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

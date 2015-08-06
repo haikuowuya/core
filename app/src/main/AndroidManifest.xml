@@ -1,21 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.haikuowuya.core" >
+<manifest
+    package="com.haikuowuya.core"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PTRActivity"
+            android:label="@string/tv_activity_ptr"
+            />
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:label="@string/tv_activity_wx"
+            />
+        <activity
+            android:name=".wxapi.GetFromWXActivity"
+            android:label="@string/tv_activity_from_wx"
+            />
+        <activity
+            android:name=".wxapi.SendToWXActivity"
+            android:label="@string/tv_activity_send_to_wx"
+            />
+        <activity
+            android:name=".wxapi.ShowFromWXActivity"
+            android:label="@string/tv_activity_show_wx"
+            />
+
+        <receiver
+            android:name=".wxapi.AppRegister"
+            android:permission="com.tencent.mm.plugin.permission.SEND">
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-
-
 public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
 {
 	protected List<T> mData;
@@ -28,6 +26,9 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
 		mLayoutId = layoutId;
 		mInflater = LayoutInflater.from(mActivity);
 	}
+
+
+
 
 	public Activity getActivity()
 	{
