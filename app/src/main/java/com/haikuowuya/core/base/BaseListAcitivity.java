@@ -11,6 +11,9 @@ import com.haikuowuya.core.view.ptr.PullRefreshLayout;
 
 import java.util.Arrays;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * 作者： raiyi-suzhou
  * 日期： 2015/7/24 0024
@@ -19,34 +22,39 @@ import java.util.Arrays;
  */
 public abstract class BaseListAcitivity extends BaseActivity
 {
-    private ListView mListView;
-    private PullRefreshLayout mPullRefreshLayout;
+    @Bind(R.id.lv_listview)
+    ListView mListView;
+    @Bind(R.id.ptr_layout)
+    PullRefreshLayout mPullRefreshLayout;
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_list);//TODO XXX
-        mListView = (ListView) findViewById(R.id.lv_listview);
-        mPullRefreshLayout = (PullRefreshLayout) findViewById(R.id.ptr_layout);
+        ButterKnife.bind(mActivity);
         mPullRefreshLayout.setOnRefreshListener(new EmptyOnRefreshListener());
         mListView.setOnItemClickListener(new OnItemClickImpl());
         mListView.setAdapter(genAdapter());
-
     }
 
     private ListAdapter genAdapter()
     {
-
-        BaseAdapter<String> adapter = new BaseAdapter<String>(mActivity, R.layout.layout_list_item, Arrays.asList(mActivity.getResources().getStringArray(R.array.list_arrays)))
+        BaseAdapter<String> adapter = new BaseAdapter<String>(mActivity, Arrays.asList(mActivity.getResources().getStringArray(R.array.list_arrays)))
         {
             @Override
             public void bindDataToView(View convertView, String s)
             {
                 setTextViewText(convertView, R.id.tv_text, s);
             }
-        }  ;
 
-                return  adapter;
+            @Override
+            public int layoutResId()
+            {
+                return R.layout.layout_list_item;
+            }
+        };
+        return adapter;
     }
 
     public ListView getListView()
@@ -58,16 +66,17 @@ public abstract class BaseListAcitivity extends BaseActivity
     {
         public void onRefresh()
         {
-            mPullRefreshLayout.postDelayed(new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    mPullRefreshLayout.setRefreshing(false);
-                    showCroutonToast("刷新成功");
+            mPullRefreshLayout.postDelayed(
+                    new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            mPullRefreshLayout.setRefreshing(false);
+                            showCroutonToast("刷新成功");
 
-                }
-            }, 2000);
+                        }
+                    }, 2000);
         }
     }
 

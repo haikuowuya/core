@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:elevation="8dp"
+    android:gravity="center_vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="#FFFF0000"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <RelativeLayout
+        android:id="@+id/relative_title_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:padding="16dp"/>
+        <TextView
+            android:id="@+id/tv_center_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+
+            android:padding="8dp"
+            android:singleLine="true"
+            android:textSize="18sp"
+            app:text="苏州"/>
+
+        <ImageView
+            android:id="@+id/iv_right"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:padding="16dp"/>
+    </RelativeLayout>
+
+
+</android.support.v7.widget.Toolbar>
