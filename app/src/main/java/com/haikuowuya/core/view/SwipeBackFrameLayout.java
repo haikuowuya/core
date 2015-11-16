@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.maimengapp.hsh.helper.ViewDragHelper;
+import com.haikuowuya.core.helper.ViewDragHelper;
 
 import java.util.ArrayList;
 import java.util.List;

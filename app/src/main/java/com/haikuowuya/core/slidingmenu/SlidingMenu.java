@@ -25,7 +25,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import com.maimengapp.hsh.R;
+import com.haikuowuya.core.R;
 
 import java.lang.reflect.Method;
 

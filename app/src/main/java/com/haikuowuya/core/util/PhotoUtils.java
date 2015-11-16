@@ -34,6 +34,11 @@ public class PhotoUtils
     public static final int REQUEST_FROM_CAMERA = 2222;
 
     /***
+     * 将上一步拍照/文件进行剪取
+     */
+    public static final int REQUEST_FROM_CROP = 3333;
+
+    /***
      * 上传头像
      */
 
