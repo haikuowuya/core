@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
-    package="com.haikuowuya.core"
+    package="com.haikuowuya.demo"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
 
-            android:name=".MainActivity"
+            android:name="com.haikuowuya.demo.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -23,28 +23,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PTRActivity"
+            android:name="com.haikuowuya.demo.PTRActivity"
             android:label="@string/tv_activity_ptr"
             />
         <activity
-            android:name=".wxapi.WXEntryActivity"
+            android:name="com.haikuowuya.demo.wxapi.WXEntryActivity"
             android:label="@string/tv_activity_wx"
             />
         <activity
-            android:name=".wxapi.GetFromWXActivity"
+            android:name="com.haikuowuya.demo.wxapi.GetFromWXActivity"
             android:label="@string/tv_activity_from_wx"
             />
         <activity
-            android:name=".wxapi.SendToWXActivity"
+            android:name="com.haikuowuya.demo.wxapi.SendToWXActivity"
             android:label="@string/tv_activity_send_to_wx"
             />
         <activity
-            android:name=".wxapi.ShowFromWXActivity"
+            android:name="com.haikuowuya.demo.wxapi.ShowFromWXActivity"
             android:label="@string/tv_activity_show_wx"
             />
 
         <receiver
-            android:name=".wxapi.AppRegister"
+            android:name="com.haikuowuya.demo.wxapi.AppRegister"
             android:permission="com.tencent.mm.plugin.permission.SEND">
             <intent-filter>
                 <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP"/>

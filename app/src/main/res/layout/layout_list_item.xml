@@ -1,4 +1,4 @@
-<com.haikuowuya.core.view.material.MaterialRippleFrameLayout
+<com.haikuowuya.demo.view.material.MaterialRippleFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,5 +16,5 @@
         android:gravity="center_vertical"
         android:padding="10dp"
         tools:text="列表一"/>
-</com.haikuowuya.core.view.material.MaterialRippleFrameLayout>
+</com.haikuowuya.demo.view.material.MaterialRippleFrameLayout>
 
