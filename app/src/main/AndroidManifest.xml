@@ -23,10 +23,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.haikuowuya.demo.PTRActivity"
-            android:label="@string/tv_activity_ptr"
-            />
-        <activity
             android:name="com.haikuowuya.demo.wxapi.WXEntryActivity"
             android:label="@string/tv_activity_wx"
             />

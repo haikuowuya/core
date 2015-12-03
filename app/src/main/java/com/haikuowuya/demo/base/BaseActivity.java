@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +17,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.haikuowuya.core.util.DensityUtils;
 import com.haikuowuya.demo.R;
 
 import butterknife.ButterKnife;
@@ -31,7 +29,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
     protected BaseActivity mActivity;
     private ProgressDialog mProgressDialog;
     private FrameLayout mFrameContainer;
-    private Toolbar mToolbar;
     private TextView mTvCenterTitle;
     private RelativeLayout mRelativeTitleContainer;
     private ImageView mIvRight;
@@ -69,38 +66,19 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
         mFrameContainer = (FrameLayout) findViewById(R.id.frame_container);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
         mFrameContainer.addView(view, layoutParams);
-        initToolbar();
+        initTitleBar();
         ButterKnife.bind(mActivity);
     }
 
     /**
-     * 初始化Toolbar
+     * 初始化TitleBar
      */
-    private void initToolbar()
+    private void initTitleBar()
     {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mTvCenterTitle = (TextView) findViewById(R.id.tv_center_title);
         mIvRight = (ImageView) findViewById(R.id.iv_right);
         mRelativeTitleContainer = (RelativeLayout) findViewById(R.id.relative_title_container);
         mIvBack = (ImageView) findViewById(R.id.iv_back);
-        if (mToolbar != null)
-        {
-            setSupportActionBar(mToolbar);
-            boolean isSliding = this instanceof BaseSlidingMenuActivity;
-            int leftPadding = 0;
-            leftPadding = 0 - DensityUtils.dpToPx(mActivity, com.haikuowuya.core.util.ViewUtils.getActionBarHeightInDp(mActivity));
-            mTvCenterTitle.setPadding(leftPadding, 0, 0, 0);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            int homeIndicatorResId = R.mipmap.ic_launcher;
-            if (isSliding)
-            {
-                homeIndicatorResId = R.mipmap.ic_launcher;
-            }
-            getSupportActionBar().setHomeAsUpIndicator(homeIndicatorResId);
-            getSupportActionBar().setHomeButtonEnabled(true);
-        }
-
-
     }
 
     protected RelativeLayout getTitleContainer()
@@ -108,20 +86,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
         return mRelativeTitleContainer;
     }
 
-    public void hideToolBar()
+    protected void hideTitleContainer()
     {
-        if (null != mToolbar)
+        if (null != mRelativeTitleContainer && View.VISIBLE == mRelativeTitleContainer.getVisibility())
         {
-            mToolbar.setVisibility(View.GONE);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        }
-    }
-
-    public void setToolBarBackgrondRes(int resId)
-    {
-        if (null != mToolbar)
-        {
-            mToolbar.setBackgroundResource(resId);
+            mRelativeTitleContainer.setVisibility(View.GONE);
         }
     }
 

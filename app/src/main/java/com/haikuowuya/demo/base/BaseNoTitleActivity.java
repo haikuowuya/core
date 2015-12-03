@@ -11,7 +11,7 @@ public abstract class BaseNoTitleActivity extends BaseTitleActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        hideToolBar();
+        hideTitleContainer();
     }
 
 }
