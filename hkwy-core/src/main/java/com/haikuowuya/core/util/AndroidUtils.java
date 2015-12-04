@@ -10,18 +10,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Method;
-import java.security.MessageDigest;
 
 /**
- *  获取手机设备的IMEI等信息
+ * 获取手机设备的IMEI等信息
  */
 public class AndroidUtils
 {
+    private AndroidUtils()
+    {
+        throw new Error("AndroidUtils can not  instantiate!");
+    }
+
     /**
-     * 获取手机设备号
+     * 获取手机设备IMEI号
      *
      * @param context :上下文对象
-     * @return   string
+     * @return string
      */
     public static String getDeviceId(Context context)
     {
@@ -34,7 +38,7 @@ public class AndroidUtils
     /**
      * 获取手机型号
      *
-     * @return    string
+     * @return string
      */
     public static String getPhoneModel()
     {
@@ -44,7 +48,7 @@ public class AndroidUtils
     /**
      * 获取系统发布版本
      *
-     * @return    String
+     * @return String
      */
     public static String getOSVersion()
     {
@@ -54,7 +58,7 @@ public class AndroidUtils
     /**
      * 获取基带版本
      *
-     * @return   string
+     * @return string
      */
     public static String getBaseHandVersion()
     {
@@ -71,8 +75,7 @@ public class AndroidUtils
 
             BaseHandVersion = (String) result;
 
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
 
         }
@@ -82,7 +85,7 @@ public class AndroidUtils
     /**
      * 获取系统内核
      *
-     * @return        String
+     * @return String
      */
     public static String getOSKernelVersion()
     {
@@ -91,8 +94,7 @@ public class AndroidUtils
         try
         {
             process = Runtime.getRuntime().exec("cat /proc/version");
-        }
-        catch (IOException e)
+        } catch (IOException e)
         {
 
             e.printStackTrace();
@@ -109,8 +111,7 @@ public class AndroidUtils
             {
                 result += line;
             }
-        }
-        catch (IOException e)
+        } catch (IOException e)
         {
             e.printStackTrace();
         }
@@ -128,7 +129,7 @@ public class AndroidUtils
     /**
      * 获取硬件版本信息
      *
-     * @return     String
+     * @return String
      */
     public static String getHardWareVersion()
     {
@@ -147,8 +148,7 @@ public class AndroidUtils
                 result += new String(re);
             }
             in.close();
-        }
-        catch (IOException e)
+        } catch (IOException e)
         {
             e.printStackTrace();
         }
@@ -159,8 +159,7 @@ public class AndroidUtils
             String str1 = result.substring(start, end);
             int offest = str1.indexOf(':');
             str = str1.substring(offest + 1).replaceAll("\n", "");
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             return "";
         }
@@ -170,39 +169,55 @@ public class AndroidUtils
     }
 
     /**
-     * 获取应用版本号
+     * 获取应用版本名称
      *
-     * @param context   context
-     * @return     String
+     * @param context context
+     * @return String
      */
-    public static String getAppVersion(Context context)
+    public static String getVersionName(Context context)
     {
-        String appVersion = "";
+        String versionName = "";
         try
         {
             PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-
             // 当前应用的版本名称
-            appVersion = info.versionName;
-            // 当前版本的版本号
-            // appVersion = ""+info.versionCode;
-			/*
-             * // 当前版本的包名 String packageNames = info.packageName;
-			 */
-        }
-        catch (PackageManager.NameNotFoundException e)
+            versionName = info.versionName;
+
+        } catch (PackageManager.NameNotFoundException e)
         {
             e.printStackTrace();
-            return appVersion;
         }
-        return appVersion;
+        return versionName;
+    }
+
+    /**
+     * 得到应用版本号
+     *
+     * @param context 上下文
+     * @return 得到应用版本号
+     */
+    public static int getVersionCode(Context context)
+    {
+        int versionCode = -1;
+        try
+        {
+            PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            // 当前应用的版本号
+            versionCode = info.versionCode;
+
+        } catch (PackageManager.NameNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        return versionCode;
+
     }
 
     /**
      * 获取应用程序唯一名字
      *
-     * @param context  context
-     * @return    String
+     * @param context context
+     * @return String
      */
     public static String getAPPName(Context context)
     {
@@ -212,8 +227,7 @@ public class AndroidUtils
             PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
 
             appName = info.packageName + "." + info.applicationInfo.loadLabel(context.getPackageManager()).toString();
-        }
-        catch (PackageManager.NameNotFoundException e)
+        } catch (PackageManager.NameNotFoundException e)
         {
             e.printStackTrace();
             return appName;
@@ -221,42 +235,4 @@ public class AndroidUtils
         return appName;
     }
 
-
-    /**
-     * md5加密
-     *
-     * @param sStr    str
-     * @return    String
-     */
-    public static String MD5(String sStr)
-    {
-        String sReturnCode = "";
-        try
-        {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(sStr.getBytes("UTF-8"));
-            byte b[] = md.digest();
-            int i;
-            StringBuffer sb = new StringBuffer("");
-            for (int offset = 0; offset < b.length; offset++)
-            {
-                i = b[offset];
-                if (i < 0)
-                {
-                    i += 256;
-                }
-                if (i < 16)
-                {
-                    sb.append("0");
-                }
-                sb.append(Integer.toHexString(i));
-            }
-
-            sReturnCode = sb.toString();
-        }
-        catch (Exception ex)
-        {
-        }
-        return sReturnCode;
-    }
 }

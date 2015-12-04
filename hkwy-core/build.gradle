@@ -1,61 +1,61 @@
 apply plugin: 'com.android.library'
-  /*
+/*
 ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'hkwy-core'
+  bintrayRepo = 'maven'
+  bintrayName = 'hkwy-core'
 
-    publishedGroupId = 'com.haikuowuya'
-    libraryName = 'hkwy-core'
-    artifact = 'hkwy-core'
+  publishedGroupId = 'com.haikuowuya'
+  libraryName = 'hkwy-core'
+  artifact = 'hkwy-core'
 
-    libraryDescription = 'haikuowuya core'
+  libraryDescription = 'haikuowuya core'
 
-    siteUrl = 'https://github.com/haikuowuya/core'
-    gitUrl = 'https://github.com/haikuowuya/core.git'
+  siteUrl = 'https://github.com/haikuowuya/core'
+  gitUrl = 'https://github.com/haikuowuya/core.git'
 
-    libraryVersion = '1.0.0'
+  libraryVersion = '1.0.0'
 
-    developerId = 'haikuowuya'
-    developerName = 'haikuowuya'
-    developerEmail = 'haikuowuya@gmail.com'
+  developerId = 'haikuowuya'
+  developerName = 'haikuowuya'
+  developerEmail = 'haikuowuya@gmail.com'
 
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+  licenseName = 'The Apache Software License, Version 2.0'
+  licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+  allLicenses = ["Apache-2.0"]
 }
 android {
 
-    compileSdkVersion 22
-    buildToolsVersion "23.0.2"
+  compileSdkVersion 22
+  buildToolsVersion "23.0.2"
 
-    defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+  defaultConfig {
+      minSdkVersion 16
+      targetSdkVersion 22
+      versionCode 1
+      versionName "1.0"
+  }
+  buildTypes {
+      release {
+          minifyEnabled false
+          proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      }
+  }
 
 
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.squareup.okhttp:okhttp:2.4.0'
-    compile 'com.mcxiaoke.volley:library:1.0.18'
-    compile 'com.squareup.okio:okio:1.5.0'
-    compile 'com.google.code.gson:gson:2.3.1'
+  compile fileTree(include: ['*.jar'], dir: 'libs')
+  compile 'com.jakewharton:butterknife:7.0.1'
+  compile 'com.squareup.okhttp:okhttp:2.4.0'
+  compile 'com.mcxiaoke.volley:library:1.0.18'
+  compile 'com.squareup.okio:okio:1.5.0'
+  compile 'com.google.code.gson:gson:2.3.1'
 
 }
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
-  */
+*/
 
 
 apply plugin: 'com.github.dcendents.android-maven'
@@ -64,7 +64,7 @@ apply plugin: 'com.jfrog.bintray'
 def siteUrl = 'https://github.com/haikuowuya/core'
 def gitUrl = 'https://github.com/haikuowuya/core.git'
 group = "com.haikuowuya"
-version = "1.0.3"
+version = "1.0.4"
 
 android {
     compileSdkVersion 23
@@ -167,3 +167,8 @@ bintray {
         publish = true
     }
 }
+
+/*
+gradlew install
+gradlew bintrayUpload
+ */
