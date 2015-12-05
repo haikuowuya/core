@@ -24,14 +24,13 @@ public class FontUtils
     /**
      * Load font from filePath
      *
-     * @param context      context
-     * @param fileName      fileName
+     * @param context  context
+     * @param fileName fileName
      * @return Typeface
      */
     public static Typeface loadFont(Context context, String fileName)
     {
         sTypeface = Typeface.createFromAsset(context.getAssets(), fileName);
-        ;
         return sTypeface;
     }
 
@@ -40,15 +39,18 @@ public class FontUtils
      */
     public static void setFont(ViewGroup group)
     {
-        int count = group.getChildCount();
-        View v;
-        for (int i = 0; i < count; i++)
+        if (null != sTypeface)
         {
-            v = group.getChildAt(i);
-            if (v instanceof TextView || v instanceof EditText || v instanceof Button)
+            int count = group.getChildCount();
+            View v;
+            for (int i = 0; i < count; i++)
             {
-                ((TextView) v).setTypeface(sTypeface);
-            } else if (v instanceof ViewGroup) setFont((ViewGroup) v);
+                v = group.getChildAt(i);
+                if (v instanceof TextView || v instanceof EditText || v instanceof Button)
+                {
+                    ((TextView) v).setTypeface(sTypeface);
+                } else if (v instanceof ViewGroup) setFont((ViewGroup) v);
+            }
         }
     }
 
@@ -59,9 +61,12 @@ public class FontUtils
      */
     public static void setFont(View v)
     {
-        if (v instanceof TextView || v instanceof EditText || v instanceof Button)
+        if (null != sTypeface)
         {
-            ((TextView) v).setTypeface(sTypeface);
+            if (v instanceof TextView || v instanceof EditText || v instanceof Button)
+            {
+                ((TextView) v).setTypeface(sTypeface);
+            }
         }
     }
 

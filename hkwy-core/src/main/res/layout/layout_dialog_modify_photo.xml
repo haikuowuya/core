@@ -20,15 +20,15 @@
         android:id="@+id/linear_camera_container"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:background="@drawable/btn_ok_click_selector"
+
+
         android:orientation="horizontal">
 
         <ImageView
             android:layout_width="64dp"
             android:layout_height="match_parent"
             android:padding="16dp"
-            android:visibility="gone"
-            />
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -46,7 +46,8 @@
         android:id="@+id/linear_gallery_container"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:background="@drawable/btn_ok_click_selector"
+
+
         android:orientation="horizontal">
 
         <ImageView

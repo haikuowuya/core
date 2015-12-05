@@ -23,6 +23,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".TestCropActivity"
+            android:label="测试Crop"/>
+        <activity
             android:name="com.haikuowuya.demo.wxapi.WXEntryActivity"
             android:label="@string/tv_activity_wx"
             />

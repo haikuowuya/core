@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.haikuowuya.demo.base.BaseActivity;
 import com.haikuowuya.demo.R;
+import com.haikuowuya.demo.base.BaseActivity;
 import com.tencent.mm.sdk.openapi.GetMessageFromWX;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;

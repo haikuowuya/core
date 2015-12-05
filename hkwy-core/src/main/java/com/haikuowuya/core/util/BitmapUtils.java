@@ -1,13 +1,10 @@
-package com.haikuowuya.demo.util;
+package com.haikuowuya.core.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
-
-import com.haikuowuya.core.util.MD5Utils;
-import com.haikuowuya.core.util.StorageUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,15 +14,16 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by Steven on 2015/9/29 0029.
+ * Bitmap 工具类
  */
 public class BitmapUtils
 {
     /***
      * 将一个图片文件压缩到指定的大小(不大于指定的宽度和高度)并保存，
+     * 宽度为屏幕的宽度、高度为屏幕的高度
      *
-     * @param context
-     * @param originalPath
+     * @param context      上下文
+     * @param originalPath 原始图片路径
      * @return 压缩后的图片路径
      */
     public static String getCompressBitmapFilePath(Context context, String originalPath)
@@ -34,28 +32,26 @@ public class BitmapUtils
         Bitmap bitmap = null;
         if (null != originalPath)
         {
-            bitmap = scaleBitmap(originalPath, PhotoUtils.W_H,  PhotoUtils.W_H);
-//            BitmapFactory.Options options = new BitmapFactory.Options();
-//            options.inJustDecodeBounds = true;
-//            BitmapFactory.decodeFile(originalPath, options);
-//            int scale = 1;
-//            while (true)
-//            {
-//                if (options.outWidth / 2 >= PhotoUtils.W_H && options.outHeight / 2 >= PhotoUtils.W_H)
-//                {
-//                    options.outWidth /= 2;
-//                    options.outHeight /= 2;
-//                    scale++;
-//                } else
-//                {
-//                    break;
-//                }
-//            }
-//            options.inSampleSize = scale;
-//            //重新读入图片，注意这次要把options.inJustDecodeBounds 设为 false哦
-//            options.inJustDecodeBounds = false;
-//            bitmap = BitmapFactory.decodeFile(originalPath, options);
-            compressBitmapFielPath = genCompressBitmapFilePath(context, bitmap, originalPath);
+            try
+            {
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inJustDecodeBounds = true;
+                InputStream input = new FileInputStream(originalPath);
+                BitmapFactory.decodeStream(input, null, options);
+                int sourceWidth = options.outWidth;
+                int sourceHeight = options.outHeight;
+                //   System.out.println("sourceWidth =" + sourceWidth + " sourceHeight = " + sourceHeight);
+                input.close();
+                float rate = Math.max(sourceWidth / (float) DensityUtils.getScreenWidthInPx(context), sourceHeight / (float) DensityUtils.getScreenHeightInPx(context));
+                options.inJustDecodeBounds = false;
+                options.inSampleSize = (int) rate;
+                input = new FileInputStream(originalPath);
+                bitmap = BitmapFactory.decodeStream(input, null, options);
+                compressBitmapFielPath = genCompressBitmapFilePath(context, bitmap, originalPath);
+            } catch (Exception e)
+            {
+
+            }
         }
         return compressBitmapFielPath;
     }
@@ -63,10 +59,10 @@ public class BitmapUtils
     /***
      * 获取压缩后的bitmap保存的文件路径
      *
-     * @param context
-     * @param bitmap
-     * @param originalPath
-     * @return
+     * @param context      上下文
+     * @param bitmap       bitmap
+     * @param originalPath 原始图片路径
+     * @return String
      */
     private static String genCompressBitmapFilePath(Context context, Bitmap bitmap, String originalPath)
     {
@@ -76,30 +72,30 @@ public class BitmapUtils
             try
             {
                 File file = new File(StorageUtils.getCacheDir(context), MD5Utils.getMD5(originalPath));
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(file));
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, new FileOutputStream(file));
                 compressBitmapFielPath = file.getAbsolutePath();
             } catch (FileNotFoundException e)
             {
                 e.printStackTrace();
             }
         }
-        System.out.println("新的处理之后的图片路径 = " + compressBitmapFielPath);
+        //System.out.println("新的处理之后的图片路径 = " + compressBitmapFielPath);
         return compressBitmapFielPath;
     }
 
     /****
      * 将bitmap保存到文件中
      *
-     * @param bm
-     * @param file
-     * @param quality
-     * @throws IOException
+     * @param bitmap  bitmap
+     * @param file    file
+     * @param quality quality
+     * @throws IOException IOException
      */
-    public static void writeBitmapToFile(Bitmap bm, File file, int quality) throws IOException
+    public static void writeBitmapToFile(Bitmap bitmap, File file, int quality) throws IOException
     {
 
         FileOutputStream fos = new FileOutputStream(file);
-        bm.compress(Bitmap.CompressFormat.JPEG, quality, fos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, quality, fos);
         fos.flush();
         fos.close();
     }
@@ -110,7 +106,7 @@ public class BitmapUtils
      * @param path      图片的URI地址
      * @param maxWidth  缩放后的宽度
      * @param maxHeight 缩放后的高度
-     * @return
+     * @return Bitmap
      */
     public static Bitmap scaleBitmap(String path, int maxWidth, int maxHeight)
     {
@@ -153,6 +149,12 @@ public class BitmapUtils
         return resizedBitmap;
     }
 
+    /***
+     * 缩放bitmap
+     *
+     * @param path 图片路径
+     * @return Bitmap
+     */
     public static Bitmap scaleBitmap(String path)
     {
         Bitmap resizedBitmap = null;
@@ -165,14 +167,14 @@ public class BitmapUtils
             int sourceWidth = options.outWidth;
             int sourceHeight = options.outHeight;
             input.close();
-            float rate = Math.max(sourceWidth / (float)  PhotoUtils.W_H, sourceHeight / (float)  PhotoUtils.W_H);
+            float rate = Math.max(sourceWidth / (float) PhotoUtils.W_H, sourceHeight / (float) PhotoUtils.W_H);
             options.inJustDecodeBounds = false;
             options.inSampleSize = (int) rate;
             input = new FileInputStream(path);
             Bitmap bitmap = BitmapFactory.decodeStream(input, null, options);
             int w0 = bitmap.getWidth();
             int h0 = bitmap.getHeight();
-            float scaleWidth =  PhotoUtils.W_H / (float) w0;
+            float scaleWidth = PhotoUtils.W_H / (float) w0;
             float scaleHeight = PhotoUtils.W_H / (float) h0;
             float maxScale = Math.min(scaleWidth, scaleHeight);
             Matrix matrix = new Matrix();
@@ -226,10 +228,12 @@ public class BitmapUtils
         return degree;
     }
 
-    /***
+    /****
      * 将图片旋转后返回bitmap ,用于选择图片时图片旋转90度的问题
      *
-     * @return
+     * @param imagePath imagePath
+     * @param bitmap    bitmap
+     * @return bitmap
      */
     public static Bitmap rotatePictureBitmap(String imagePath, Bitmap bitmap)
     {
@@ -243,6 +247,13 @@ public class BitmapUtils
         return rotateBitmap(bitmap, angle);
     }
 
+    /***
+     * 将图片旋转angle
+     *
+     * @param bitmap bitmap
+     * @param angle  angle
+     * @return bitmap
+     */
     public static Bitmap rotateBitmap(Bitmap bitmap, float angle)
     {
         Matrix matrix = new Matrix();

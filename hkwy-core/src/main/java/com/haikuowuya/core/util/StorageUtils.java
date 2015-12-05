@@ -21,28 +21,28 @@ public class StorageUtils
 {
 
     /***
-     获取统一的缓存目录，如果有sd卡 :/mnt/sdcard/android/data/包名/cache/
+     * 获取统一的缓存目录，如果有sd卡 :/mnt/sdcard/android/data/包名/cache/
      * 如果没有: /data/data/包名/cache/
-     * @param context     :上下文对象
-     * @return     file
+     *
+     * @param context :上下文对象
+     * @return file
      */
     public static File getCacheDir(Context context)
     {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
         {
             return context.getExternalCacheDir();
-        }
-        else
+        } else
         {
             return context.getCacheDir();
         }
     }
 
-
     /***
-     *       获取崩溃日志文件目录
-     * @param context      :上下文对象
-     * @return    file
+     * 获取崩溃日志文件目录
+     *
+     * @param context :上下文对象
+     * @return file
      */
     public static File getCrashDir(Context context)
     {
@@ -57,9 +57,9 @@ public class StorageUtils
     /**
      * 根据url的MD5来获取对应的bitmap(用于网站图标)
      *
-     * @param context     :上下文对象
-     * @param url      url
-     * @return            bitmap
+     * @param context :上下文对象
+     * @param url     url
+     * @return bitmap
      */
     public static Bitmap getCacheBitmap(Context context, String url)
     {
@@ -73,20 +73,19 @@ public class StorageUtils
     }
 
     /****
-     *     获取缓存文件路径
-     * @param context      :上下文对象
-     * @param url    url
-     * @return          string
+     * 获取缓存文件路径
+     *
+     * @param context :上下文对象
+     * @param url     url
+     * @return string
      */
     public static String getCacheFilePath(Context context, String url)
     {
         return null;//getCacheDir(context).getAbsolutePath() + MD5Utils.generate(url);
     }
 
-
     /***
-     *
-     * @return    获取拍照目录
+     * @return 获取拍照目录
      */
     public static File getDcimDir()
     {
@@ -102,9 +101,9 @@ public class StorageUtils
      * 从Uri中获取包含的文件路径， 需要判断是否4.4以上，主要用于onActivityResult中的处理
      * 文件路径：可以是来自Storage Access Framework Documents（4.4),也可以是基于ContentProviders 或者   MediaStore 中的_data
      *
-     * @param context   :上下文对象
-     * @param uri    uri
-     * @return          string
+     * @param context :上下文对象
+     * @param uri     uri
+     * @return string
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public static String getFilePathFromUri(final Context context, final Uri uri)
@@ -121,14 +120,12 @@ public class StorageUtils
                 {
                     return Environment.getExternalStorageDirectory() + "/" + split[1];
                 }
-            }
-            else if (isDownloadsDocument(uri))
+            } else if (isDownloadsDocument(uri))
             {
                 final String id = DocumentsContract.getDocumentId(uri);
                 final Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
                 return getDataColumn(context, contentUri, null, null);
-            }
-            else if (isMediaDocument(uri))
+            } else if (isMediaDocument(uri))
             {
                 final String docId = DocumentsContract.getDocumentId(uri);
                 final String[] split = docId.split(":");
@@ -138,12 +135,10 @@ public class StorageUtils
                 if ("image".equals(type))
                 {
                     contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                }
-                else if ("video".equals(type))
+                } else if ("video".equals(type))
                 {
                     contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                }
-                else if ("audio".equals(type))
+                } else if ("audio".equals(type))
                 {
                     contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                 }
@@ -153,13 +148,10 @@ public class StorageUtils
 
                 return getDataColumn(context, contentUri, selection, selectionArgs);
             }
-        }
-        else if (ContentResolver.SCHEME_CONTENT.equalsIgnoreCase(uri.getScheme()))// MediaStore (and general)
+        } else if (ContentResolver.SCHEME_CONTENT.equalsIgnoreCase(uri.getScheme()))// MediaStore (and general)
         {
             return getDataColumn(context, uri, null, null);
-        }
-
-        else if (ContentResolver.SCHEME_FILE.equalsIgnoreCase(uri.getScheme()))
+        } else if (ContentResolver.SCHEME_FILE.equalsIgnoreCase(uri.getScheme()))
         {// File
             return uri.getPath();
         }
@@ -169,7 +161,7 @@ public class StorageUtils
     /**
      * 从cursor中查询获取uri中包含的文件路径
      *
-     * @param context     :上下文对象
+     * @param context       :上下文对象
      * @param uri
      * @param selection
      * @param selectionArgs
@@ -188,8 +180,7 @@ public class StorageUtils
                 final int index = cursor.getColumnIndexOrThrow(column);
                 return cursor.getString(index);
             }
-        }
-        finally
+        } finally
         {
             if (cursor != null)
             {
@@ -203,7 +194,7 @@ public class StorageUtils
      * 判断是否是SDcard存储文件
      *
      * @param uri : uri
-     * @return     boolean
+     * @return boolean
      */
     public static boolean isExternalStorageDocument(Uri uri)
     {
@@ -214,7 +205,7 @@ public class StorageUtils
      * 判断Uri是否是下载文件
      *
      * @param uri :uri
-     * @return     boolean
+     * @return boolean
      */
     public static boolean isDownloadsDocument(Uri uri)
     {
@@ -224,8 +215,8 @@ public class StorageUtils
     /**
      * 判断Uri是否是多媒体文件
      *
-     * @param uri   uri
-     * @return    boolean
+     * @param uri uri
+     * @return boolean
      */
     public static boolean isMediaDocument(Uri uri)
     {
@@ -234,10 +225,11 @@ public class StorageUtils
 
     /***
      * 将图片保存到DCIM目录中
-     * @param context    ：context
-     * @param bmp                 :bmp
-     * @param imageName    :imagename
-     * @return     file
+     *
+     * @param context   ：context
+     * @param bmp       :bmp
+     * @param imageName :imagename
+     * @return file
      */
     public static File saveImageToDCIM(Context context, Bitmap bmp, String imageName)
     {
@@ -259,8 +251,7 @@ public class StorageUtils
             MediaStore.Images.Media.insertImage(context.getContentResolver(), file.getAbsolutePath(), fileName, null);
             // 最后通知图库更新
             context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file.getPath())));
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
             file = null;
