@@ -6,4 +6,6 @@
     <string name="tv_activity_from_wx">微信/从微信接收</string>
     <string name="tv_activity_show_wx">微信/显示微信请求的消息</string>
     <string name="tv_activity_ptr">下拉刷新/下拉刷新入口</string>
+
+    <string name="tv_activity_test_crop">测试选取图片</string>
 </resources>

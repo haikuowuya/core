@@ -24,7 +24,7 @@
         </activity>
         <activity
             android:name=".TestCropActivity"
-            android:label="测试Crop"/>
+            android:label="@string/tv_activity_test_crop"/>
         <activity
             android:name="com.haikuowuya.demo.wxapi.WXEntryActivity"
             android:label="@string/tv_activity_wx"
