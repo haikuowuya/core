@@ -64,7 +64,7 @@ apply plugin: 'com.jfrog.bintray'
 def siteUrl = 'https://github.com/haikuowuya/core'
 def gitUrl = 'https://github.com/haikuowuya/core.git'
 group = "com.haikuowuya"
-version = "1.0.5"
+version = "1.1.0"
 
 android {
     compileSdkVersion 23
@@ -99,8 +99,8 @@ install {
         pom {
             project {
                 packaging 'aar'
-                name 'hkwy-core'
-                description 'hkwy core '
+                name 'core'
+                description 'core '
                 // #CONFIG# // project title
                 url siteUrl
                 // Set your license
@@ -159,8 +159,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "hkwy-core"
-        // #CONFIG# project name in jcenter
+        name = "core"// #CONFIG# project name in jcenter
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]

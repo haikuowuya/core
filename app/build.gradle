@@ -12,6 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -37,5 +38,5 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.mcxiaoke.volley:library:1.0.18'
     compile 'com.squareup.okio:okio:1.5.0'
-    compile project(':hkwy-core')
+    compile project(':core')
 }
