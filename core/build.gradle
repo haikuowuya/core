@@ -64,7 +64,7 @@ apply plugin: 'com.jfrog.bintray'
 def siteUrl = 'https://github.com/haikuowuya/core'
 def gitUrl = 'https://github.com/haikuowuya/core.git'
 group = "com.haikuowuya"
-version = "1.1.0"
+version = "1.1.1"
 
 android {
     compileSdkVersion 23
@@ -90,6 +90,10 @@ android {
 }
 dependencies {
     compile 'com.google.code.gson:gson:2.3'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.mcxiaoke.volley:library:1.0.18'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile files('libs/org.apache.http.legacy.jar')
 }
 
 

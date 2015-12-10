@@ -13,8 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.haikuowuya.core.base.BaseHKWYAdapter;
 import com.haikuowuya.demo.R;
-import com.haikuowuya.demo.base.BaseAdapter;
 import com.haikuowuya.demo.base.BaseFragment;
 import com.haikuowuya.demo.view.ptr.PullRefreshLayout;
 
@@ -63,7 +63,7 @@ public class PTRFragment extends BaseFragment
     private ListAdapter genAdapter()
     {
 
-        BaseAdapter<ListItem> adapter = new BaseAdapter<ListItem>(mActivity, genData())
+        BaseHKWYAdapter<ListItem> adapter = new BaseHKWYAdapter<ListItem>(mActivity, genData())
         {
             public void bindDataToView(View convertView, final ListItem listItem)
             {
@@ -125,7 +125,6 @@ public class PTRFragment extends BaseFragment
                 {
                     mPullRefreshLayout.setRefreshing(false);
                     //showCroutonToast("刷新成功");
-
                 }
             }, 2000);
         }

@@ -12,9 +12,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-
 import com.haikuowuya.demo.R;
-import com.haikuowuya.demo.base.BaseActivity;
+import com.haikuowuya.demo.base.BaseTitleActivity;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.SendAuth;
 import com.tencent.mm.sdk.openapi.SendMessageToWX;
@@ -31,7 +30,7 @@ import com.tencent.mm.sdk.openapi.WXWebpageObject;
 import java.io.File;
 import java.net.URL;
 
-public class SendToWXActivity extends BaseActivity
+public class SendToWXActivity extends BaseTitleActivity
 {
 
     private static final int THUMB_SIZE = 150;

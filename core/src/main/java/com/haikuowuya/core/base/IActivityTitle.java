@@ -1,4 +1,4 @@
-package com.haikuowuya.demo.base;
+package com.haikuowuya.core.base;
 
 /**
  * Created by raiyi-suzhou on 2015/5/21 0021.

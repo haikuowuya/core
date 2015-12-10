@@ -1,4 +1,4 @@
-package com.haikuowuya.demo.http;
+package com.haikuowuya.core.http;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -26,8 +26,9 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * OkHttp backed {@link HttpStack HttpStack} that does not
+ * OkHttp backed  HttpStack    that does not
  * use okhttp-urlconnection
+ *
  */
 public class OkHttpStack implements HttpStack
 {

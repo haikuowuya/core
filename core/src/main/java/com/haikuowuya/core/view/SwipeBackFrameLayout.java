@@ -1,4 +1,4 @@
-package com.haikuowuya.demo.view;
+package com.haikuowuya.core.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.haikuowuya.demo.helper.ViewDragHelper;
+import com.haikuowuya.core.helper.ViewDragHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class SwipeBackFrameLayout extends FrameLayout
     /**
      * Edge flag indicating that the left edge should be affected.
      */
-    public static final int EDGE_LEFT =  ViewDragHelper.EDGE_LEFT;
+    public static final int EDGE_LEFT = ViewDragHelper.EDGE_LEFT;
 
     /**
      * Edge flag indicating that the right edge should be affected.
@@ -67,7 +67,7 @@ public class SwipeBackFrameLayout extends FrameLayout
      * A view is currently settling into place as a result of a fling or
      * predefined non-interactive motion.
      */
-    public static final int STATE_SETTLING =  ViewDragHelper.STATE_SETTLING;
+    public static final int STATE_SETTLING = ViewDragHelper.STATE_SETTLING;
 
     /**
      * Default threshold of scroll
@@ -132,7 +132,7 @@ public class SwipeBackFrameLayout extends FrameLayout
     public SwipeBackFrameLayout(Context context, AttributeSet attrs)
     {
         super(context, attrs);
-        mDragHelper =  ViewDragHelper.create(this, new ViewDragCallback());
+        mDragHelper = ViewDragHelper.create(this, new ViewDragCallback());
         setEdgeSize((int) (getResources().getDisplayMetrics().density * DEFAULT_EDGE_SIZE));
         setEdgeTrackingEnabled(EDGE_FLAGS[0]);
         GradientDrawable shadowGradientDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{0X00000000, DEFAULT_SCRIM_COLOR});
@@ -148,7 +148,7 @@ public class SwipeBackFrameLayout extends FrameLayout
     public SwipeBackFrameLayout(Context context, AttributeSet attrs, int defStyle)
     {
         super(context, attrs);
-        mDragHelper =  ViewDragHelper.create(this, new ViewDragCallback());
+        mDragHelper = ViewDragHelper.create(this, new ViewDragCallback());
         setEdgeSize((int) (getResources().getDisplayMetrics().density * DEFAULT_EDGE_SIZE));
         int mode = EDGE_FLAGS[0];
         setEdgeTrackingEnabled(mode);
@@ -251,7 +251,7 @@ public class SwipeBackFrameLayout extends FrameLayout
     /**
      * Removes a listener from the set of listeners
      *
-     * @param listener
+     * @param listener  listener
      */
     public void removeSwipeListener(SwipeListener listener)
     {
@@ -266,7 +266,7 @@ public class SwipeBackFrameLayout extends FrameLayout
      * Set scroll threshold, we will close the activity, when scrollPercent over
      * this value
      *
-     * @param threshold
+     * @param threshold     threshold
      */
     public void setScrollThresHold(float threshold)
     {
@@ -280,7 +280,8 @@ public class SwipeBackFrameLayout extends FrameLayout
     /**
      * Set a drawable used for edge shadow.
      *
-     * @param shadow Drawable to use
+     * @param shadow   Drawable to use
+     * @param edgeFlag edgeFlag
      * @see #EDGE_LEFT
      * @see #EDGE_RIGHT
      * @see #EDGE_BOTTOM
@@ -299,7 +300,6 @@ public class SwipeBackFrameLayout extends FrameLayout
         }
         invalidate();
     }
-
 
     /**
      * Scroll out contentView and finish the activity
@@ -378,7 +378,7 @@ public class SwipeBackFrameLayout extends FrameLayout
         final boolean drawContent = child == mContentView;
 
         boolean ret = super.drawChild(canvas, child, drawingTime);
-        if (mScrimOpacity > 0 && drawContent && mDragHelper.getViewDragState() !=  ViewDragHelper.STATE_IDLE)
+        if (mScrimOpacity > 0 && drawContent && mDragHelper.getViewDragState() != ViewDragHelper.STATE_IDLE)
         {
             drawShadow(canvas, child);
             drawScrim(canvas, child);
@@ -455,11 +455,11 @@ public class SwipeBackFrameLayout extends FrameLayout
         mScrimOpacity = 1 - mScrollPercent;
         if (mDragHelper.continueSettling(true))
         {
-              android.support.v4.view.ViewCompat.postInvalidateOnAnimation(this);
+            android.support.v4.view.ViewCompat.postInvalidateOnAnimation(this);
         }
     }
 
-    private class ViewDragCallback extends  ViewDragHelper.Callback
+    private class ViewDragCallback extends ViewDragHelper.Callback
     {
         private boolean mIsScrollOverValid;
 

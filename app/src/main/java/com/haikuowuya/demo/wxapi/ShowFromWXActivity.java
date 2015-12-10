@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.haikuowuya.demo.R;
-import com.haikuowuya.demo.base.BaseActivity;
+import com.haikuowuya.demo.base.BaseTitleActivity;
 
-public class ShowFromWXActivity extends BaseActivity
+public class ShowFromWXActivity extends BaseTitleActivity
 {
 	public static final String STitle = "showmsg_title";
 	public static final String SMessage = "showmsg_message";

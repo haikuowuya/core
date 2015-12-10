@@ -1,4 +1,4 @@
-package com.haikuowuya.demo.slidingmenu;
+package com.haikuowuya.core.slidingmenu;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,7 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.haikuowuya.demo.R;
+import com.haikuowuya.core.R;
 
 public class CustomViewBehind extends ViewGroup
 {

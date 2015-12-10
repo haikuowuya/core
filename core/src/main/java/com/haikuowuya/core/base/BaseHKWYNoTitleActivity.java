@@ -1,11 +1,11 @@
-package com.haikuowuya.demo.base;
+package com.haikuowuya.core.base;
 
 import android.os.Bundle;
 
 /**
  * 将中间显示标题的ToolBar隐藏
  */
-public abstract class BaseNoTitleActivity extends BaseTitleActivity
+public abstract class BaseHKWYNoTitleActivity extends BaseHKWYTitleActivity
 {
     @Override
     public void onCreate(Bundle savedInstanceState)

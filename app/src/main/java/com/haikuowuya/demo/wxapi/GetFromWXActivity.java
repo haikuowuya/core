@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.haikuowuya.demo.R;
-import com.haikuowuya.demo.base.BaseActivity;
+import com.haikuowuya.demo.base.BaseTitleActivity;
 import com.tencent.mm.sdk.openapi.GetMessageFromWX;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
@@ -22,7 +22,7 @@ import com.tencent.mm.sdk.openapi.WXTextObject;
 import com.tencent.mm.sdk.openapi.WXVideoObject;
 import com.tencent.mm.sdk.openapi.WXWebpageObject;
 
-public class GetFromWXActivity extends BaseActivity
+public class GetFromWXActivity extends BaseTitleActivity
 {
     private static final int THUMB_SIZE = 150;
 

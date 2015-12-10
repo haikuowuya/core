@@ -1,32 +1,26 @@
-package com.haikuowuya.demo.base;
+package com.haikuowuya.core.base;
 
-import android.os.Bundle;
+import android.app.Activity;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.haikuowuya.core.base.BaseHKWYFragment;
-
-import butterknife.ButterKnife;
 
 /**
- * Created by raiyi-suzhou on 2015/5/11 0011.
+ * 项目中使用fragment的基类
  */
-public abstract class BaseFragment extends BaseHKWYFragment
+public abstract class BaseHKWYFragment extends Fragment implements IFragmentTitle
 {
-
+    protected BaseHKWYActivity mActivity;
     /**
-     * 一个标识值， 应该在{@link Fragment#onCreateView(LayoutInflater, ViewGroup, Bundle)}方法中将其修改为true
+     * 一个标识值， 应该在 Fragment#onCreateView(LayoutInflater, ViewGroup, Bundle) 方法中将其修改为true
      */
+    protected boolean mIsInit = false;
+    protected BaseHKWYFragment mFragment;
+
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState)
+    public void onAttach(Activity activity)
     {
-        super.onViewCreated(view, savedInstanceState);
-        if(null != view)
-        {
-            ButterKnife.bind(mFragment, view);
-        }
+        super.onAttach(activity);
+        mActivity = (BaseHKWYActivity) activity;
+        mFragment = this;
     }
 
     @Override
@@ -39,7 +33,6 @@ public abstract class BaseFragment extends BaseHKWYFragment
     public void onResume()
     {
         super.onResume();
-
         if (getUserVisibleHint())
         {
             if (mIsInit)

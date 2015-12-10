@@ -1,20 +1,17 @@
-package com.haikuowuya.demo.base;
+package com.haikuowuya.core.base;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.haikuowuya.core.util.DensityUtils;
-import com.haikuowuya.demo.fragment.MenuFragment;
-import com.haikuowuya.demo.slidingmenu.SlidingMenu;
+import com.haikuowuya.core.R;
+import com.haikuowuya.core.slidingmenu.SlidingMenu;
 
-/**
- * 中间显示一个标题的Activity的基类，标题的名称为{@link BaseActivity#getActivityTitle()}
- */
-public abstract class BaseSlidingMenuActivity extends BaseTitleActivity
+
+public abstract class BaseHKWYSlidingMenuActivity extends BaseHKWYTitleActivity
 {
     protected SlidingMenu mSlidingMenu;
-    private MenuFragment mMenuFragment;
 
     @Override
     public void setContentView(int layoutResID)
@@ -56,7 +53,7 @@ public abstract class BaseSlidingMenuActivity extends BaseTitleActivity
         mSlidingMenu.setMode(SlidingMenu.LEFT);
         mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
         mSlidingMenu.setShadowWidth(DensityUtils.dpToPx(mActivity, 120.f));
-        mSlidingMenu.setBehindOffset(DensityUtils.dpToPx(mActivity,120.f));
+        mSlidingMenu.setBehindOffset(DensityUtils.dpToPx(mActivity, 120.f));
         mSlidingMenu.setFadeDegree(0.65f);
         mSlidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 //        mSlidingMenu.setBehindCanvasTransformer(
@@ -70,10 +67,9 @@ public abstract class BaseSlidingMenuActivity extends BaseTitleActivity
 //                        // canvas.scale(percentOpen, 1, 0, 0);
 //                    }
 //                });
- //      mSlidingMenu.setMenu(R.layout.layout_menu);
+        mSlidingMenu.setMenu(R.layout.layout_menu_hkwy);
         // 设置隐藏在AboveMenu菜单后面的菜单
-        mMenuFragment = MenuFragment.newInstance();
-        //getSupportFragmentManager().beginTransaction().replace(R.id.menu_container, mMenuFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.menu_container, fragmentAsMenu()).commit();
 
     }
 
@@ -81,6 +77,12 @@ public abstract class BaseSlidingMenuActivity extends BaseTitleActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        mMenuFragment.onActivityResult(requestCode, resultCode, data);
+        BaseHKWYFragment baseHKWYFragment = fragmentAsMenu();
+        if (null != baseHKWYFragment)
+        {
+            baseHKWYFragment.onActivityResult(requestCode, resultCode, data);
+        }
     }
+
+    public abstract BaseHKWYFragment fragmentAsMenu();
 }

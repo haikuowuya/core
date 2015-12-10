@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.haikuowuya.demo.R;
 import com.haikuowuya.demo.base.BaseActivity;
+import com.haikuowuya.demo.base.BaseTitleActivity;
 import com.tencent.mm.sdk.openapi.BaseReq;
 import com.tencent.mm.sdk.openapi.BaseResp;
 import com.tencent.mm.sdk.openapi.ConstantsAPI;
@@ -19,7 +20,7 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.tencent.mm.sdk.openapi.WXAppExtendObject;
 import com.tencent.mm.sdk.openapi.WXMediaMessage;
 
-public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler
+public class WXEntryActivity extends BaseTitleActivity implements IWXAPIEventHandler
 {
     private static final int TIMELINE_SUPPORTED_VERSION = 0x21020001;
 
@@ -28,12 +29,11 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler
     // IWXAPI 是第三方app和微信通信的openapi接口
     private IWXAPI api;
 
-    public static void actionWX( BaseActivity activity)
+    public static void actionWX(BaseActivity activity)
     {
         Intent intent = new Intent(activity, WXEntryActivity.class);
         activity.startActivity(intent);
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -89,8 +89,7 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler
                 if (wxSdkVersion >= TIMELINE_SUPPORTED_VERSION)
                 {
                     Toast.makeText(WXEntryActivity.this, "wxSdkVersion = " + Integer.toHexString(wxSdkVersion) + "\ntimeline supported", Toast.LENGTH_LONG).show();
-                }
-                else
+                } else
                 {
                     Toast.makeText(WXEntryActivity.this, "wxSdkVersion = " + Integer.toHexString(wxSdkVersion) + "\ntimeline not supported", Toast.LENGTH_LONG).show();
                 }

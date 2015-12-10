@@ -1,0 +1,7 @@
+<resources>
+    <color name="colorPrimary">#FFFEFEFE</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <item name="selected_view" type="id"/>
+</resources>

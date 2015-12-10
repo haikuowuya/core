@@ -1,11 +1,11 @@
-package com.haikuowuya.demo.helper;
+package com.haikuowuya.core.helper;
 
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
-import com.haikuowuya.demo.view.SwipeBackFrameLayout;
+import com.haikuowuya.core.view.SwipeBackFrameLayout;
 
 import java.lang.reflect.Method;
 

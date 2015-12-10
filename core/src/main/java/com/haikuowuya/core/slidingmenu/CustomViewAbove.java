@@ -1,4 +1,4 @@
-package com.haikuowuya.demo.slidingmenu;
+package com.haikuowuya.core.slidingmenu;
 
 import android.content.Context;
 import android.graphics.Canvas;

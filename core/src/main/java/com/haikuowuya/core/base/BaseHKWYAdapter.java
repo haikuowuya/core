@@ -1,4 +1,4 @@
-package com.haikuowuya.demo.base;
+package com.haikuowuya.core.base;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
@@ -15,9 +15,9 @@ import java.util.List;
 /***
  * 简化适配器的写法，
  *
- * @param <T>
+ * @param <T> t
  */
-public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
+public abstract class BaseHKWYAdapter<T> extends android.widget.BaseAdapter
 {
     /***
      * 数据源数据
@@ -36,7 +36,7 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
      */
     protected int mPosition;
 
-    public BaseAdapter(Activity activity, List<T> data)
+    public BaseHKWYAdapter(Activity activity, List<T> data)
     {
         this.mData = data;
         this.mActivity = activity;
@@ -50,7 +50,6 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
         {
             t = mData.get(position);
         }
-
         return t;
     }
 
@@ -62,9 +61,9 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
     /****
      * 获取创建adapter时的上下文对象
      *
-     * @return
+     * @return      Activity
      */
-    public  Activity getActivity()
+    public Activity getActivity()
     {
         return mActivity;
     }
@@ -108,7 +107,7 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
     /***
      * 判断是否是最后一个view
      *
-     * @return
+     * @return    boolean
      */
     public boolean isLastPosition()
     {
@@ -118,15 +117,15 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
     /***
      * 数据和view绑定关联
      *
-     * @param convertView
-     * @param t
+     * @param convertView    convertView
+     * @param t    t
      */
     public abstract void bindDataToView(View convertView, T t);
 
     /***
      * 适配器的布局文件
      *
-     * @return
+     * @return  适配器的布局文件
      */
     public abstract int layoutResId();
 
@@ -146,9 +145,9 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
     /***
      * TextView设置文字
      *
-     * @param convertView
-     * @param viewId
-     * @param text
+     * @param convertView  convertView
+     * @param viewId      viewId
+     * @param text       text
      */
     public void setTextViewText(View convertView, int viewId, CharSequence text)
     {
@@ -159,9 +158,9 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
     /***
      * TextView设置文字颜色
      *
-     * @param convertView
-     * @param viewId
-     * @param textColor
+     * @param convertView   convertView
+     * @param viewId       viewId
+     * @param textColor        textColor
      */
     public void setTextViewTextColor(View convertView, int viewId, int textColor)
     {
@@ -182,9 +181,9 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
     /***
      * 设置View的点击事件
      *
-     * @param convertView
-     * @param viewId
-     * @param listener
+     * @param convertView convertView
+     * @param viewId      viewId
+     * @param listener    listener
      */
     public void setViewOnClick(View convertView, int viewId, View.OnClickListener listener)
     {
@@ -194,8 +193,8 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
     /***
      * 设置convertView的点击事件
      *
-     * @param convertView
-     * @param listener
+     * @param convertView convertView
+     * @param listener    listener
      */
     public void setConvertViewOnClick(View convertView, View.OnClickListener listener)
     {
@@ -220,24 +219,14 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter
         final ImageView imageView = getView(convertView, viewId);
         imageView.setImageResource(defaultResId);
         imageView.setTag(imageUrl);
-//		ImageLoader.getInstance().loadImage(imageUrl, new AbsImageLoadingListener()
-//		{
-//			public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage)
-//			{
-//				if (imageView.getTag() != null && imageView.getTag().equals(imageUrl))
-//				{
-//					imageView.setImageBitmap(loadedImage);
-//				}
-//			}
-//		});
     }
 
     /***
      * 设置图片的资源文件
      *
-     * @param convertView
-     * @param viewId
-     * @param resId
+     * @param convertView convertView
+     * @param viewId      viewId
+     * @param resId       resId
      */
     public void setImageViewResId(View convertView, int viewId, int resId)
     {

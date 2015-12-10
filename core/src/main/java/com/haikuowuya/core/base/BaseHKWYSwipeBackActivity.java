@@ -1,16 +1,15 @@
-package com.haikuowuya.demo.base;
+package com.haikuowuya.core.base;
 
 import android.os.Bundle;
 
-import com.haikuowuya.demo.helper.SwipeBackActivityHelper;
-import com.haikuowuya.demo.view.SwipeBackFrameLayout;
+import com.haikuowuya.core.helper.SwipeBackActivityHelper;
+import com.haikuowuya.core.view.SwipeBackFrameLayout;
 
 /**
  * Created by Steven on 2015/11/12 0012.
  */
-public abstract class BaseSwipeBackActivity extends BaseActivity implements SwipeBackFrameLayout.SwipeBackListener
+public abstract class BaseHKWYSwipeBackActivity extends BaseHKWYActivity implements SwipeBackFrameLayout.SwipeBackListener
 {
-
     /***
      * 滑动结束help
      */

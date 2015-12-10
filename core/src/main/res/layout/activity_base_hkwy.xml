@@ -10,8 +10,8 @@
     <RelativeLayout
         android:id="@+id/relative_title_container"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/color_title_background_color">
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="40dp">
 
         <ImageView
             android:id="@+id/iv_back"
