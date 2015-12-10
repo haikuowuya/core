@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFF6F6F6"
+            android:orientation="vertical"
+            android:scrollbars="none">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginTop="15dp"
+                  android:background="#F6F6F6"
+                  android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:digits="0123456789"
+                android:hint="手机号"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColorHint="#FF999999"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/et_code"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:digits="0123456789"
+                android:hint="验证码"
+                android:inputType="phone"
+                android:maxLength="6"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColorHint="#FF999999"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_code"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:gravity="center_vertical"
+                android:background="@null"
+                android:paddingRight="10dp"
+                android:text="获取验证码"
+                android:textColor="#FFE22828" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="13dp"
+                android:gravity="center_vertical"
+                android:foregroundGravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/tv_code"
+                android:background="#FFE22828" />
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+</ScrollView>

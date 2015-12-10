@@ -261,4 +261,5 @@ public class BitmapUtils
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 
+
 }
