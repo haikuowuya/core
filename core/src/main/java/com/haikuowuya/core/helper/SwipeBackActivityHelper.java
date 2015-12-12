@@ -1,7 +1,9 @@
 package com.haikuowuya.core.helper;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
@@ -30,30 +32,32 @@ public class SwipeBackActivityHelper
         mActivity.getWindow().getDecorView().setBackgroundDrawable(null);
         mSwipeBackLayout = new SwipeBackFrameLayout(mActivity);
         mSwipeBackLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        mSwipeBackLayout.addSwipeListener(
-                new SwipeBackFrameLayout.SwipeListener()
+        mSwipeBackLayout.addSwipeListener(new SwipeBackFrameLayout.SwipeListener()
+        {
+            @Override
+            public void onScrollStateChange(int state, float scrollPercent)
+            {
+
+            }
+
+            @Override
+            public void onEdgeTouch(int edgeFlag)
+            {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 {
-                    @Override
-                    public void onScrollStateChange(int state, float scrollPercent)
-                    {
-                        if (state == SwipeBackFrameLayout.STATE_IDLE && scrollPercent == 0)
-                        {
-                            convertActivityFromTranslucent();
-                        }
-                    }
+                    convertActivityToTranslucentAfterL(mActivity);
+                } else
+                {
+                    convertActivityToTranslucentBeforeL(mActivity);
+                }
+            }
 
-                    @Override
-                    public void onEdgeTouch(int edgeFlag)
-                    {
-                        convertActivityToTranslucent();
-                    }
+            @Override
+            public void onScrollOverThreshold()
+            {
 
-                    @Override
-                    public void onScrollOverThreshold()
-                    {
-
-                    }
-                });
+            }
+        });
     }
 
     public void onPostCreate()
@@ -80,11 +84,11 @@ public class SwipeBackActivityHelper
      * Convert a translucent themed Activity
      * {@link android.R.attr#windowIsTranslucent} to a fullscreen opaque
      * Activity.
-     * <p>
+
      * Call this whenever the background of a translucent Activity has changed
      * to become opaque. Doing so will allow the {@link android.view.Surface} of
      * the Activity behind to be released.
-     * <p>
+
      * This call has no effect on non-translucent activities or on activities
      * with the {@link android.R.attr#windowIsFloating} attribute.
      */
@@ -101,18 +105,9 @@ public class SwipeBackActivityHelper
     }
 
     /**
-     * Convert a translucent themed Activity
-     * {@link android.R.attr#windowIsTranslucent} back from opaque to
-     * translucent following a call to {@link #convertActivityFromTranslucent()}
-     * .
-     * <p>
-     * Calling this allows the Activity behind this one to be seen again. Once
-     * all such Activities have been redrawn
-     * <p>
-     * This call has no effect on non-translucent activities or on activities
-     * with the {@link android.R.attr#windowIsFloating} attribute.
+     * Calling the convertToTranslucent method on platforms before Android 5.0
      */
-    public void convertActivityToTranslucent()
+    public static void convertActivityToTranslucentBeforeL(Activity activity)
     {
         try
         {
@@ -127,7 +122,35 @@ public class SwipeBackActivityHelper
             }
             Method method = Activity.class.getDeclaredMethod("convertToTranslucent", translucentConversionListenerClazz);
             method.setAccessible(true);
-            method.invoke(mActivity, new Object[]{null});
+            method.invoke(activity, new Object[]{null});
+        } catch (Throwable t)
+        {
+        }
+    }
+
+    /**
+     * Calling the convertToTranslucent method on platforms after Android 5.0
+     */
+    private static void convertActivityToTranslucentAfterL(Activity activity)
+    {
+        try
+        {
+            Method getActivityOptions = Activity.class.getDeclaredMethod("getActivityOptions");
+            getActivityOptions.setAccessible(true);
+            Object options = getActivityOptions.invoke(activity);
+
+            Class<?>[] classes = Activity.class.getDeclaredClasses();
+            Class<?> translucentConversionListenerClazz = null;
+            for (Class clazz : classes)
+            {
+                if (clazz.getSimpleName().contains("TranslucentConversionListener"))
+                {
+                    translucentConversionListenerClazz = clazz;
+                }
+            }
+            Method convertToTranslucent = Activity.class.getDeclaredMethod("convertToTranslucent", translucentConversionListenerClazz, ActivityOptions.class);
+            convertToTranslucent.setAccessible(true);
+            convertToTranslucent.invoke(activity, null, options);
         } catch (Throwable t)
         {
         }
