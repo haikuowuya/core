@@ -8,5 +8,6 @@
     <string name="tv_activity_ptr">下拉刷新/下拉刷新入口</string>
 
     <string name="tv_activity_test_crop">测试选取图片</string>
+    <string name="tv_activity_test_theme">测试主题</string>
     <string name="tv_activity_test_send_sms">测试发送短信验证码</string>
 </resources>

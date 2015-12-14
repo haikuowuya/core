@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,11 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.haikuowuya.core.R;
+import com.haikuowuya.core.ThemeManager;
 
 /**
  * 使用到的基类Activity
  */
-public abstract class BaseHKWYActivity extends AppCompatActivity implements IActivityTitle
+public abstract class BaseHKWYActivity extends BaseHKWYThemeActivity implements IActivityTitle
 {
     protected BaseHKWYActivity mActivity;
     private ProgressDialog mProgressDialog;
@@ -201,7 +201,7 @@ public abstract class BaseHKWYActivity extends AppCompatActivity implements IAct
     /**
      * 隐藏软键盘，根据给定的View
      *
-     * @param view    view
+     * @param view view
      */
     public void hideSoftKeyBorard(View view)
     {
@@ -227,6 +227,15 @@ public abstract class BaseHKWYActivity extends AppCompatActivity implements IAct
     {
         super.onPause();
         hideSoftKeyBorard();
+    }
+
+    public void setUpTheme(ThemeManager.ThemeItem theme)
+    {
+        if(null != theme)
+        {
+            mRelativeTitleContainer.setBackgroundColor(theme.getColorPrimary());
+        }
+
     }
 
 }
