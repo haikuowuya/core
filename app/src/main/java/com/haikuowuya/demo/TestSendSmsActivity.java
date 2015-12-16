@@ -2,12 +2,12 @@ package com.haikuowuya.demo;
 
 import android.content.Intent;
 
-import com.haikuowuya.core.base.BaseHKWYTitleActivity;
+import com.haikuowuya.core.base.BaseHKWYThemeActivity;
 import com.haikuowuya.core.util.PhotoUtils;
 import com.haikuowuya.demo.base.BaseFragment;
 import com.haikuowuya.demo.fragment.SendCodeFragment;
 
-public class TestSendSmsActivity extends BaseHKWYTitleActivity
+public class TestSendSmsActivity extends BaseHKWYThemeActivity
 {
     private SendCodeFragment mSendCodeFragment;
 

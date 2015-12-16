@@ -13,6 +13,7 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 
@@ -304,5 +305,29 @@ public class ViewUtils
     public static int getScreenWidthInPx(Context context)
     {
         return context.getResources().getDisplayMetrics().widthPixels;
+    }
+
+    /***
+     * 根据primaryColor的颜色来设置状态栏的颜色值
+     *
+     * @param activity
+     * @param primaryColor
+     */
+    public static void setStatusBarColorWithPrimaryColor(Activity activity, int primaryColor)
+    {
+        int primaryDarkColor = ColorUtils.getDarkerColor(primaryColor);
+        if (Build.VERSION.SDK_INT >= 21)
+        {
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            activity.getWindow().setStatusBarColor(primaryColor);
+            if (Build.VERSION.SDK_INT >= 23 && ColorUtils.isLightColor(primaryDarkColor))
+                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_LAYOUT_FLAGS | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            else
+                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_LAYOUT_FLAGS);
+        } else if (Build.VERSION.SDK_INT == 19)
+        {
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
     }
 }

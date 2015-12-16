@@ -1,34 +1,88 @@
 package com.haikuowuya.core.base;
 
 import android.os.Bundle;
-import android.support.annotation.StyleRes;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.AttrRes;
+import android.support.annotation.ColorInt;
+import android.util.TypedValue;
 
-import com.haikuowuya.core.ThemeManager;
+import com.haikuowuya.core.R;
+import com.haikuowuya.core.ThemePref;
+import com.haikuowuya.core.util.ViewUtils;
 
 /**
  * 使用到的基类_支持切换主题Activity
  */
-public abstract class BaseHKWYThemeActivity extends AppCompatActivity
+public abstract class BaseHKWYThemeActivity extends BaseHKWYTitleActivity
 {
+    private int mPrimaryColor;
+    private int mAccentColor;
+
+    private int mBaseThemeId = 0;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
-        ThemeManager.get().setContext(this);
-        setBaseTheme(ThemeManager.get().getBase(), true);
+        ThemePref.init(this);
+        int themeId = R.style.HKWY_Light;
+        mBaseThemeId = ThemePref.getBaseTheme();
+        if (mBaseThemeId != 0)
+        {
+            themeId = mBaseThemeId;
+        }
+        setTheme(themeId);
         super.onCreate(savedInstanceState);
-        setUpTheme(ThemeManager.get().getTheme());
+        setUpTheme();
     }
 
-    public void setBaseTheme(@StyleRes int baseTheme, boolean first)
+    @Override
+    protected void onResume()
     {
-        setTheme(baseTheme);
-        if (!first)
+        super.onResume();
+        if (mPrimaryColor != ThemePref.getPrimaryColor() || mAccentColor != ThemePref.getAccentColor() || mBaseThemeId != ThemePref.getBaseTheme())
         {
             recreate();
         }
     }
 
-    public abstract void setUpTheme(ThemeManager.ThemeItem theme );
+    protected void setUpTheme()
+    {
+        mPrimaryColor = ThemePref.getPrimaryColor();
+        mAccentColor = ThemePref.getAccentColor();
+        ViewUtils.setStatusBarColorWithPrimaryColor(mActivity, mPrimaryColor);
+        themeTitleBar();
+        themeBackground();
 
+    }
+
+    protected void themeBackground()
+    {
+        int backgroundColor = resolveColorAttr(android.R.attr.background);
+        mFrameFragmentContainer.setBackgroundColor(backgroundColor);
+    }
+
+    protected void themeTitleBar()
+    {
+        setTitleBarBackgroundColor(mPrimaryColor);
+        setCenterTitleTextColor(mAccentColor);
+    }
+
+    @ColorInt
+    public int getPrimaryColor()
+    {
+        return ThemePref.getPrimaryColor();
+    }
+
+    @ColorInt
+    public int getAccentColor()
+    {
+        return ThemePref.getAccentColor();
+    }
+
+    @ColorInt
+    public int resolveColorAttr(@AttrRes int resId)
+    {
+        final TypedValue value = new TypedValue();
+        getTheme().resolveAttribute(resId, value, true);
+        return value.data;
+    }
 }

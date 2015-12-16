@@ -1,16 +1,27 @@
 <resources>
 
-    <style name="Base.AppTheme" parent="Base.SwipeBack.AppTheme"></style>
+    <style name="Base.AppTheme.Light" parent="Base.SwipeBack.AppTheme.Light"></style>
 
-    <style name="Base.SwipeBack.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.AppTheme.Dark" parent="Base.SwipeBack.AppTheme.Dark"></style>
+
+    <style name="Base.SwipeBack.AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
         <!--页面Activity跳转的样式-->
         <item name="android:windowAnimationStyle">@style/Animation.Activity.Style</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.ActionBar</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
+
+    <style name="Base.SwipeBack.AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
+        <!--页面Activity跳转的样式-->
+        <item name="android:windowAnimationStyle">@style/Animation.Activity.Style</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+
+        <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat</item>
     </style>
 
 
@@ -55,5 +66,19 @@
         <item name="android:fragmentCloseEnterAnimation">@anim/base_stay_orig</item>
         <item name="android:fragmentCloseExitAnimation">@anim/base_slide_right_out</item>
 
+    </style>
+
+    <style name="HKWY.Light" parent="Base.AppTheme.Light">
+        <item name="colorPrimary">@color/colorPrimary_light</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_light</item>
+        <item name="colorAccent">@color/colorAccent_light</item>
+        <item name="android:background">@color/color_background_light</item>
+    </style>
+
+    <style name="HKWY.Dark" parent="Base.AppTheme.Dark">
+        <item name="colorPrimary">@color/colorPrimary_dark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_dark</item>
+        <item name="colorAccent">@color/colorAccent_dark</item>
+        <item name="android:background">@color/color_background_dark</item>
     </style>
 </resources>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,12 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.haikuowuya.core.R;
-import com.haikuowuya.core.ThemeManager;
 
 /**
  * 使用到的基类Activity
  */
-public abstract class BaseHKWYActivity extends BaseHKWYThemeActivity implements IActivityTitle
+public abstract class BaseHKWYActivity extends AppCompatActivity implements IActivityTitle
 {
     protected BaseHKWYActivity mActivity;
     private ProgressDialog mProgressDialog;
@@ -61,7 +61,7 @@ public abstract class BaseHKWYActivity extends BaseHKWYThemeActivity implements 
     public void setContentView(View view)
     {
         super.setContentView(R.layout.activity_base_hkwy);
-        mFrameContainer = (FrameLayout) findViewById(R.id.frame_container);
+        mFrameContainer = (FrameLayout) findViewById(R.id.frame_container_hkwy);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
         mFrameContainer.addView(view, layoutParams);
         initTitleBar();
@@ -79,9 +79,27 @@ public abstract class BaseHKWYActivity extends BaseHKWYThemeActivity implements 
         mIvBack = (ImageView) findViewById(R.id.iv_back);
     }
 
-    protected RelativeLayout getTitleContainer()
+    /***
+     * 设置 标题栏的颜色
+     *
+     * @param backgroundColor 背景颜色
+     */
+    protected void setTitleBarBackgroundColor(int backgroundColor)
     {
-        return mRelativeTitleContainer;
+        mRelativeTitleContainer.setBackgroundColor(backgroundColor);
+        mTvCenterTitle.setBackgroundColor(backgroundColor);
+        mIvBack.setBackgroundColor(backgroundColor);
+        mIvRight.setBackgroundColor(backgroundColor);
+    }
+
+    /**
+     * 设置标题栏的颜色
+     *
+     * @param textColor 标题栏颜色
+     */
+    protected void setCenterTitleTextColor(int textColor)
+    {
+        mTvCenterTitle.setTextColor(textColor);
     }
 
     protected void hideTitleContainer()
@@ -227,15 +245,6 @@ public abstract class BaseHKWYActivity extends BaseHKWYThemeActivity implements 
     {
         super.onPause();
         hideSoftKeyBorard();
-    }
-
-    public void setUpTheme(ThemeManager.ThemeItem theme)
-    {
-        if(null != theme)
-        {
-            mRelativeTitleContainer.setBackgroundColor(theme.getColorPrimary());
-        }
-
     }
 
 }

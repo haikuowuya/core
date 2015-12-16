@@ -1,8 +1,8 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Base.AppTheme"/>
+    <style name="AppTheme" parent="HKWY.Light"/>
 
-    <style name="AppTheme.Dark" parent="Base.AppTheme">
+    <style name="AppTheme.Dark" parent="HKWY.Dark">
         <item name="colorPrimary">@color/color_title_background_color</item>
         <item name="colorPrimaryDark">@color/color_title_background_color</item>
         <item name="colorAccent">@color/color_title_background_color</item>

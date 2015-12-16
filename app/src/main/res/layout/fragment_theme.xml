@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFF6F6F6"
+            android:fillViewport="true"
             android:orientation="vertical"
             android:scrollbars="none">
 
@@ -10,17 +10,16 @@
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:layout_marginTop="15dp"
-                  android:background="#F6F6F6"
                   android:orientation="vertical">
 
-          <TextView
-              android:id="@+id/tv_change_theme"
-              android:layout_width="match_parent"
-              android:text="更改主题"
-              android:padding="10dp"
-              android:layout_gravity="center"
-              android:gravity="center"
-              android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tv_change_theme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="更改主题"/>
 
 
     </LinearLayout>

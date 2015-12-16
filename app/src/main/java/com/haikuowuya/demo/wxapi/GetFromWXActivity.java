@@ -37,7 +37,6 @@ public class GetFromWXActivity extends BaseTitleActivity
         // acquire wxapi
         api = WXAPIFactory.createWXAPI(this, mActivity.getString(R.string.tv_wx_key));
         bundle = getIntent().getExtras();
-
         setContentView(R.layout.activity_wx_get_from_wx);
         initView();
     }

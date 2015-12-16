@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFF6F6F6"
+            android:fillViewport="true"
             android:orientation="vertical"
             android:scrollbars="none">
 
@@ -10,7 +10,6 @@
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:layout_marginTop="15dp"
-                  android:background="#F6F6F6"
                   android:orientation="vertical">
 
         <LinearLayout
@@ -29,7 +28,7 @@
                 android:padding="10dp"
                 android:singleLine="true"
                 android:textColorHint="#FF999999"
-                android:textSize="14sp" />
+                android:textSize="14sp"/>
         </LinearLayout>
 
 
@@ -50,7 +49,7 @@
                 android:padding="10dp"
                 android:singleLine="true"
                 android:textColorHint="#FF999999"
-                android:textSize="14sp" />
+                android:textSize="14sp"/>
 
             <TextView
                 android:id="@+id/tv_code"
@@ -58,24 +57,23 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="5dp"
-                android:gravity="center_vertical"
                 android:background="@null"
+                android:gravity="center_vertical"
                 android:paddingRight="10dp"
                 android:text="获取验证码"
-                android:textColor="#FFE22828" />
+                android:textColor="#FFE22828"/>
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="13dp"
-                android:gravity="center_vertical"
-                android:foregroundGravity="center_vertical"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/tv_code"
-                android:background="#FFE22828" />
+                android:background="#FFE22828"
+                android:foregroundGravity="center_vertical"
+                android:gravity="center_vertical"/>
 
         </RelativeLayout>
-
 
 
     </LinearLayout>
