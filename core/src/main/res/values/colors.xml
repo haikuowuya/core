@@ -1,14 +1,14 @@
 <resources>
     <item name="selected_view" type="id"/>
-    <color name="colorPrimary_light">#FFFEFEFE</color>
+    <color name="colorPrimary_light">#FF999999</color>
     <color name="colorPrimaryDark_light">#303F9F</color>
     <color name="colorAccent_light">#FF4081</color>
+    <color name="color_background_light">#FFFAFAFA</color>
+
+
 
     <color name="colorPrimary_dark">#FF0F0F0F</color>
     <color name="colorPrimaryDark_dark">#880F0F0F</color>
-    <color name="colorAccent_dark">#FF880000</color>
-
-    
+    <color name="colorAccent_dark">#FFDDDDDD</color>
     <color name="color_background_dark">#FF303030</color>
-    <color name="color_background_light">#FFFAFAFA</color>
 </resources>
