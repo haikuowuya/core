@@ -9,7 +9,6 @@
         <item name="android:windowAnimationStyle">@style/Animation.Activity.Style</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
-
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.ActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
     </style>
@@ -73,6 +72,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark_light</item>
         <item name="colorAccent">@color/colorAccent_light</item>
         <item name="android:background">@color/color_background_light</item>
+        <item name="title_bar_height">60dp</item>
     </style>
 
     <style name="HKWY.Dark" parent="Base.AppTheme.Dark">
@@ -80,5 +80,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark_dark</item>
         <item name="colorAccent">@color/colorAccent_dark</item>
         <item name="android:background">@color/color_background_dark</item>
+        <item name="title_bar_height">40dp</item>
     </style>
+
+
+    <attr name="title_bar_height" format="dimension"/>
 </resources>

@@ -29,8 +29,9 @@
         <activity
             android:name=".TestSendSmsActivity"
             android:label="@string/tv_activity_test_send_sms"/>
-        <activity android:name=".TestThemeActivity"
-                  android:label="@string/tv_activity_test_theme"/>
+        <activity
+            android:name=".TestThemeActivity"
+            android:label="@string/tv_activity_test_theme"/>
         <activity
             android:name="com.haikuowuya.demo.wxapi.WXEntryActivity"
             android:label="@string/tv_activity_wx"

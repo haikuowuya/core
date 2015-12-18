@@ -7,6 +7,8 @@ import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
+import android.support.annotation.AttrRes;
+import android.support.annotation.ColorInt;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
@@ -329,5 +331,19 @@ public class ViewUtils
         {
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
+    }
+
+    /**
+     * 从样式主题中获取颜色值
+     * @param context context
+     * @param resId      resId【android.R.attr.background】
+     * @return   color
+     */
+    @ColorInt
+    public static int resolveColorAttr(Context context, @AttrRes int resId)
+    {
+        final TypedValue value = new TypedValue();
+        context.getTheme().resolveAttribute(resId, value, true);
+        return value.data;
     }
 }

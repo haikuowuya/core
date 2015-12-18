@@ -10,13 +10,13 @@
     <RelativeLayout
         android:id="@+id/relative_title_container"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimary_dark"
-        android:layout_height="40dp">
+        android:layout_height="?attr/title_bar_height"
+        android:background="@color/colorPrimary_dark">
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="?attr/title_bar_height"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"/>
 
         <TextView
@@ -31,12 +31,13 @@
 
         <ImageView
             android:id="@+id/iv_right"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="?attr/title_bar_height"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"/>
 
     </RelativeLayout>
+
 
     <FrameLayout
         android:id="@+id/frame_container_hkwy"

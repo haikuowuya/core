@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.ColorInt;
+import android.support.v4.content.ContextCompat;
 
 /**
  * Created by Adrian on 11/20/2015
@@ -47,6 +48,11 @@ public class ThemePref
         return prefs.getInt(key, 0);
     }
 
+    public static int getInt(String key, int defaultInt)
+    {
+        return prefs.getInt(key, defaultInt);
+    }
+
     public static int getBaseTheme()
     {
         return getInt(PREF_BASE_THEME);
@@ -60,7 +66,7 @@ public class ThemePref
     @ColorInt
     public static int getPrimaryColor()
     {
-        return getInt(PREF_THEME_PRIMARY);
+        return getInt(PREF_THEME_PRIMARY, ContextCompat.getColor(context, R.color.colorPrimary_light));
     }
 
     public static void setAccentColor(@ColorInt int color)
@@ -71,6 +77,6 @@ public class ThemePref
     @ColorInt
     public static int getAccentColor()
     {
-        return getInt(PREF_THEME_ACCENT);
+        return getInt(PREF_THEME_ACCENT, ContextCompat.getColor(context, R.color.colorAccent_light));
     }
 }

@@ -1,9 +1,7 @@
 package com.haikuowuya.core.base;
 
 import android.os.Bundle;
-import android.support.annotation.AttrRes;
 import android.support.annotation.ColorInt;
-import android.util.TypedValue;
 
 import com.haikuowuya.core.R;
 import com.haikuowuya.core.ThemePref;
@@ -16,7 +14,6 @@ public abstract class BaseHKWYThemeActivity extends BaseHKWYTitleActivity
 {
     private int mPrimaryColor;
     private int mAccentColor;
-
     private int mBaseThemeId = 0;
 
     @Override
@@ -56,7 +53,7 @@ public abstract class BaseHKWYThemeActivity extends BaseHKWYTitleActivity
 
     protected void themeBackground()
     {
-        int backgroundColor = resolveColorAttr(android.R.attr.background);
+        int backgroundColor = ViewUtils.resolveColorAttr(mActivity, android.R.attr.background);
         mFrameFragmentContainer.setBackgroundColor(backgroundColor);
     }
 
@@ -78,11 +75,4 @@ public abstract class BaseHKWYThemeActivity extends BaseHKWYTitleActivity
         return ThemePref.getAccentColor();
     }
 
-    @ColorInt
-    public int resolveColorAttr(@AttrRes int resId)
-    {
-        final TypedValue value = new TypedValue();
-        getTheme().resolveAttribute(resId, value, true);
-        return value.data;
-    }
 }

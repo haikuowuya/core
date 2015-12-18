@@ -2,12 +2,12 @@ package com.haikuowuya.demo;
 
 import android.content.Intent;
 
-import com.haikuowuya.core.base.BaseHKWYThemeActivity;
+import com.haikuowuya.core.base.BaseHKWYTitleActivity;
 import com.haikuowuya.core.util.PhotoUtils;
 import com.haikuowuya.demo.base.BaseFragment;
 import com.haikuowuya.demo.fragment.CropFragment;
 
-public class TestCropActivity extends BaseHKWYThemeActivity
+public class TestCropActivity extends BaseHKWYTitleActivity
 {
     private CropFragment mCropFragment;
 
@@ -27,7 +27,7 @@ public class TestCropActivity extends BaseHKWYThemeActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        PhotoUtils.onActivityResult(this, requestCode, resultCode,data);
+        PhotoUtils.onActivityResult(this, requestCode, resultCode, data);
         if (null != mCropFragment)
         {
             mCropFragment.onActivityResult(requestCode, resultCode, data);
