@@ -89,12 +89,13 @@ android {
     }
 }
 dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.google.code.gson:gson:2.3'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.mcxiaoke.volley:library:1.0.18'
     compile 'com.android.support:recyclerview-v7:23.1.1'
     compile 'com.android.support:appcompat-v7:23.1.1'
-    compile files('libs/org.apache.http.legacy.jar')
+
 }
 
 

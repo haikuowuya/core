@@ -85,4 +85,10 @@
 
 
     <attr name="title_bar_height" format="dimension"/>
+
+
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
 </resources>

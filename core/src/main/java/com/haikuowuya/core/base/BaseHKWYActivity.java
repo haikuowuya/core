@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
@@ -90,6 +91,11 @@ public abstract class BaseHKWYActivity extends AppCompatActivity implements IAct
         mTvCenterTitle.setBackgroundColor(backgroundColor);
         mIvBack.setBackgroundColor(backgroundColor);
         mIvRight.setBackgroundColor(backgroundColor);
+    }
+
+    public ViewGroup getContentViewGroup()
+    {
+        return mFrameContainer;
     }
 
     /**
