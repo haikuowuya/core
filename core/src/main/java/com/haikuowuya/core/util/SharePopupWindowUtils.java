@@ -48,9 +48,10 @@ public class SharePopupWindowUtils
         mPopupWindow.setAnimationStyle(R.style.AnimBottom);
         // 设置SelectPicPopupWindow弹出窗体的背景
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(0000000000));
+
     }
 
-    public static void showShare(BaseHKWYActivity baseActivity, View contentView)
+    private static void showShare(BaseHKWYActivity baseActivity, View contentView)
     {
         initPopupWindow(baseActivity);
         mPopupWindow.setContentView(contentView);
@@ -60,9 +61,9 @@ public class SharePopupWindowUtils
     public static void showShare(BaseHKWYActivity baseActivity, String shareContent)
     {
         initPopupWindow(baseActivity);
-        int[] shareTypes = new int[]{ShareConstant.WEIXIN_FRIEND_SHARE, ShareConstant.WEIXIN_FRIENDS_SHARE, ShareConstant.SINA_WEIBO_SHARE, ShareConstant.SMS_SHARE, ShareConstant.EMAIL_SHARE};
-        String[] shareTypeNames = new String[]{"微信", "微信朋友圈", "微博", "信息", "邮件",};
-        Integer[] shareTypeIcons = new Integer[]{R.mipmap.share_weixin_bg, R.mipmap.share_weixinq_bg, R.mipmap.share_weibo_bg, R.mipmap.share_sms_bg, R.mipmap.share_email_bg};
+        int[] shareTypes = new int[]{ShareConstant.WEIXIN_FRIEND_SHARE, ShareConstant.WEIXIN_FRIENDS_SHARE, ShareConstant.SINA_WEIBO_SHARE, ShareConstant.SMS_SHARE, ShareConstant.EMAIL_SHARE, ShareConstant.QQ_SHARE, ShareConstant.QQ_QZONE_SHARE, ShareConstant.COPY_SHARE};
+        String[] shareTypeNames = new String[]{"微信", "朋友圈", "微博", "信息", "邮件", "QQ好友", "QQ空间", "剪切板"};
+        Integer[] shareTypeIcons = new Integer[]{R.mipmap.share_weixin_bg, R.mipmap.share_weixinq_bg, R.mipmap.share_weibo_bg, R.mipmap.share_sms_bg, R.mipmap.share_email_bg, R.mipmap.ic_share_qq, R.mipmap.ic_share_qq_qzone, R.mipmap.share_default_ic};
         List<ShareGridAdapter.ShareItem> shareItems = new LinkedList<>();
         int count = shareTypes.length >= shareTypeNames.length ? shareTypeNames.length : shareTypes.length;
         count = count >= shareTypeIcons.length ? shareTypeIcons.length : count;
@@ -78,8 +79,9 @@ public class SharePopupWindowUtils
         View contentView = LayoutInflater.from(baseActivity).inflate(R.layout.layout_share_popupwindow, null);
         GridView gridView = (GridView) contentView.findViewById(R.id.gv_gridview);
         gridView.setAdapter(new ShareGridAdapter(baseActivity, shareItems));
+        gridView.setSelector(new ColorDrawable(0x00000000));
         View viewView = contentView.findViewById(R.id.view_view);
-        Button btnCancle = (Button) contentView.findViewById(R.id.btn_cancel);
+        Button btnCancel = (Button) contentView.findViewById(R.id.btn_cancel);
         View.OnClickListener onClickListener = new View.OnClickListener()
         {
             @Override
@@ -88,7 +90,7 @@ public class SharePopupWindowUtils
                 SharePopupWindowUtils.dismiss();
             }
         };
-        btnCancle.setOnClickListener(onClickListener);
+        btnCancel.setOnClickListener(onClickListener);
         viewView.setOnClickListener(onClickListener);
         gridView.setOnItemClickListener(new OnItemClickListenerImpl(baseActivity, shareJson));
         mPopupWindow.setContentView(contentView);
@@ -136,6 +138,7 @@ public class SharePopupWindowUtils
         };
         btnCancle.setOnClickListener(onClickListener);
         viewView.setOnClickListener(onClickListener);
+        gridView.setSelector(new ColorDrawable(0x00000000));
         gridView.setOnItemClickListener(new OnItemClickListenerImpl(baseActivity, shareJson, bitmap));
         mPopupWindow.setContentView(contentView);
         mPopupWindow.showAtLocation(baseActivity.getContentViewGroup(), Gravity.BOTTOM, 0, 0);
@@ -173,11 +176,11 @@ public class SharePopupWindowUtils
                 ShareUtils.shareWithSMS(activity, shareContent);
             } else if (shareItem.type == ShareConstant.WEIXIN_FRIEND_SHARE)
             {
-                //activity.showToast("请稍等！");
+
                 ShareUtils.shareWithWeixin(activity, shareContent, false, mBitmap);
             } else if (shareItem.type == ShareConstant.WEIXIN_FRIENDS_SHARE)
             {
-                // activity.showToast("请稍等！");
+
                 ShareUtils.shareWithWeixin(activity, shareContent, true, mBitmap);
             } else if (shareItem.type == ShareConstant.SINA_WEIBO_SHARE)
             {
@@ -188,6 +191,12 @@ public class SharePopupWindowUtils
             } else if (shareItem.type == ShareConstant.YIXIN_FRIENDS_SHARE)
             {
                 ShareUtils.shareWithYixin(activity, shareContent, true);
+            } else if (shareItem.type == ShareConstant.QQ_SHARE)
+            {
+                ShareUtils.shareWithQQ(activity, shareContent, false, mBitmap);
+            } else if (shareItem.type == ShareConstant.QQ_QZONE_SHARE)
+            {
+                ShareUtils.shareWithQQ(activity, shareContent, true, mBitmap);
             } else
             {
                 activity.showToast("未知错误，请重试");
@@ -257,7 +266,7 @@ public class SharePopupWindowUtils
 
         public void showAsDropDown(View anchor, int xoff, int yoff, int gravity)
         {
-            //super.showAsDropDown(anchor, xoff, yoff, gravity);
+            super.showAsDropDown(anchor, xoff, yoff, gravity);
             setbackgroundAlpha(0.5f);
         }
 
@@ -276,7 +285,7 @@ public class SharePopupWindowUtils
         public void setbackgroundAlpha(float bgAlpha)
         {
             Window window = ((Activity) mContext).getWindow();
-            window.setBackgroundDrawable(new ColorDrawable(0x44000000));
+            window.setBackgroundDrawable(new ColorDrawable(0xFFFFFFFF));
             WindowManager.LayoutParams lp = window.getAttributes();
             lp.alpha = bgAlpha;
             window.setAttributes(lp);

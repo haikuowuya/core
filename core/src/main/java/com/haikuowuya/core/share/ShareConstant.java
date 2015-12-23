@@ -3,7 +3,8 @@ package com.haikuowuya.core.share;
 /**
  * Created by man on 2015/7/8.
  */
-public class ShareConstant {
+public class ShareConstant
+{
 
     public static final int SMS_SHARE = 0;
 
@@ -18,6 +19,9 @@ public class ShareConstant {
     public static final int YIXIN_FRIEND_SHARE = 5;
 
     public static final int YIXIN_FRIENDS_SHARE = 6;
+    public static final int QQ_SHARE = 7;
+    public static final int QQ_QZONE_SHARE = 8;
+    public static final int COPY_SHARE = 9;
 
     public static final String SMS_SHARE_S = "sms";
 
@@ -32,6 +36,9 @@ public class ShareConstant {
     public static final String YIXIN_FRIEND_SHARE_S = "yixinFriend";
 
     public static final String YIXIN_FRIENDS_SHARE_S = "yixinFriends";
+    public static final String QQ = "qq";
+    public static final String QQ_QZONE = "qzone";
+    public static final String COPY = "copy";
 
     public static final String DEFAULT_SHARE_URL = "http://m.locoso.com/2/mobileclient.jsp";
 
@@ -40,7 +47,6 @@ public class ShareConstant {
     public static final String DEFAULT_SHARE_CONTENT = " 本地搜(Locoso)是全球最大的中文黄页服务商，汇集了海量的商家企业信息，提供最全面和完善的行业企业分类信息搜索，企业建站等推广服务，为企业与用户进行更方便快捷的信息交互和共享架起一座桥梁。";
 
     public static final String SHARE_TYPE_CONTENT = "shareTypeContent";
-
 
     //微信分享相关ID
     /**

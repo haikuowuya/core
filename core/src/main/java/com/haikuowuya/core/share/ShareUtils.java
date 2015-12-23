@@ -8,10 +8,13 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
 
 import com.haikuowuya.core.R;
+import com.tencent.connect.share.QQShare;
+import com.tencent.connect.share.QzoneShare;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -112,17 +115,34 @@ public class ShareUtils
         shareSina.sendRequest();
     }
 
-    public static boolean checkIfWXExists(Activity activity)
+    public static boolean checkWXIsExist(Activity activity)
     {
         String packageName = "com.tencent.mm";
+
         try
         {
             @SuppressWarnings("unused") ApplicationInfo info = activity.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
             return true;
         } catch (PackageManager.NameNotFoundException e)
         {
-            return false;
         }
+        return false;
+
+    }
+
+    public static boolean checkQQIsExist(Activity activity)
+    {
+        String packageName = "com.tencent.mobileqq";
+        boolean flag = false;
+        try
+        {
+            @SuppressWarnings("unused") ApplicationInfo info = activity.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e)
+        {
+        }
+        return false;
+
     }
 
     /**
@@ -140,27 +160,27 @@ public class ShareUtils
      * 微信分享
      *
      * @param sharecontent
-     * @param isPengyouquan
+     * @param isPengYouQuan
      */
-    public static void shareWithWeixin(Activity activity, ShareContent sharecontent, boolean isPengyouquan, Bitmap bitmap)
+    public static void shareWithWeixin(Activity activity, ShareContent sharecontent, boolean isPengYouQuan, Bitmap bitmap)
     {
         JsonShareItem shareWeixinItem;
         ShareWeixin shareWeixin = new ShareWeixin(activity);
-        if (isPengyouquan)
+        if (isPengYouQuan)
         {
             shareWeixinItem = sharecontent.getShareContent(ShareConstant.WEIXIN_FRIENDS_SHARE_S);
         } else
         {
             shareWeixinItem = sharecontent.getShareContent(ShareConstant.WEIXIN_FRIEND_SHARE_S);
         }
-        boolean isWXExist = checkIfWXExists(activity);
+        boolean isWXExist = checkWXIsExist(activity);
         if (!isWXExist)
         {
             Toast.makeText(activity, "您未安装微信哦", Toast.LENGTH_SHORT).show();
             return;
         }
         String share_title = shareWeixinItem.getShareTitle();
-        if (!isPengyouquan)
+        if (!isPengYouQuan)
         {
             share_title = activity.getString(R.string.app_name);
         }
@@ -172,7 +192,49 @@ public class ShareUtils
             bitmap = BitmapFactory.decodeResource(activity.getResources(), R.drawable.ic_crop);
         }
         String filename = ShareUtils.decodeBitmap2File(activity, bitmap);
-        shareWeixin.shareWeixin(isPengyouquan, activity, filename, share_url, share_title, share_content);
+        shareWeixin.shareWeixin(isPengYouQuan, activity, filename, share_url, share_title, share_content);
+    }
+
+    public static final void shareWithQQ(Activity activity, ShareContent shareContent, boolean withQzone, Bitmap bitmap)
+    {
+        boolean isQQExist = checkQQIsExist(activity);
+        if (!isQQExist)
+        {
+            Toast.makeText(activity, "您未安装QQ哦", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        JsonShareItem shareItem = null;
+        if (withQzone)
+        {
+            shareItem = shareContent.getShareContent(ShareConstant.QQ_QZONE);
+        } else
+        {
+            shareItem = shareContent.getShareContent(ShareConstant.QQ);
+        }
+        ShareQQ shareQQ = new ShareQQ();
+        String share_title = "测试QQ分享", share_content = "测试QQ分享", share_url = "http://haikuowuya.com";
+        if (null != shareItem)
+        {
+            share_title = shareItem.getShareTitle();
+            share_content = shareItem.getShareContent();
+            share_url = shareItem.getShareUrl();
+        }
+        Bundle bundle = new Bundle();
+
+        if (withQzone)
+        {
+            bundle.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
+            bundle.putString(QzoneShare.SHARE_TO_QQ_TITLE, share_title);
+            bundle.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, share_url);
+            bundle.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, share_content);
+            shareQQ.doShareToQzone(activity, bundle);
+        } else
+        {
+            bundle.putString(QQShare.SHARE_TO_QQ_TITLE, share_title);
+            bundle.putString(QQShare.SHARE_TO_QQ_TARGET_URL, share_url);
+            bundle.putString(QQShare.SHARE_TO_QQ_SUMMARY, share_content);
+            shareQQ.doShareToQQ(activity, bundle);
+        }
     }
 
     public static byte[] bmpToByteArray(final Bitmap bmp, final boolean needRecycle)
@@ -248,4 +310,6 @@ public class ShareUtils
         }
         return null;
     }
+
+    public static final String QQ_APP_ID = "1104965199";
 }
