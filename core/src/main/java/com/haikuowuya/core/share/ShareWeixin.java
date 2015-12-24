@@ -16,20 +16,11 @@ public class ShareWeixin
 {
     private static final int THUMB_SIZE = 100;
 
-    private Context context;
-
-    private IWXAPI api;
-
-    public ShareWeixin(Context context)
+    public static IWXAPI doWeixinRegister(Context context)
     {
-        this.context = context;
-
-    }
-
-    public static void doWeixinRegist(Context context)
-    {
-        IWXAPI api = WXAPIFactory.createWXAPI(context, ShareConstant.WEIXIN_APP_ID, true);
-        api.registerApp(ShareConstant.WEIXIN_APP_ID);
+        IWXAPI api = WXAPIFactory.createWXAPI(context, ShareConstant.WEI_XIN_APP_ID, true);
+        api.registerApp(ShareConstant.WEI_XIN_APP_ID);
+        return api;
     }
 
     private static String buildTransaction(final String type)
@@ -37,10 +28,10 @@ public class ShareWeixin
         return (type == null) ? String.valueOf(System.currentTimeMillis()) : type + System.currentTimeMillis();
     }
 
-    public void shareWeixin(boolean isPengyouquan, Context context, String filePath, String url, String title, String content)
+    public static  void shareWeixin( Context context,  boolean isPengyouquan,String filePath, String url, String title, String content)
     {
-        doWeixinRegist(context);
-        IWXAPI api = WXAPIFactory.createWXAPI(context, ShareConstant.WEIXIN_APP_ID);
+        IWXAPI api = doWeixinRegister(context);
+        //WXAPIFactory.createWXAPI(context, ShareConstant.WEI_XIN_APP_ID);
         WXWebpageObject webPage = new WXWebpageObject();
         webPage.webpageUrl = (TextUtils.isEmpty(url)) ? ShareConstant.DEFAULT_SHARE_URL : url;
 

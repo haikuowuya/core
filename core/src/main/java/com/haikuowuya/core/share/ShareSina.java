@@ -40,7 +40,7 @@ public class ShareSina
     {
         this.context = context;
 
-        mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(context, ShareConstant.SINA_CONSUMER_KEY);
+        mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(context, ShareConstant.SINA_APP_ID);
         mWeiboShareAPI.registerApp();
         // 如果未安装微博客户端，设置下载微博对应的回调
         if (!mWeiboShareAPI.isWeiboAppInstalled())

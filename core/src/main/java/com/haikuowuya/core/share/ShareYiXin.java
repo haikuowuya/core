@@ -19,13 +19,6 @@ import im.yixin.sdk.util.BitmapUtil;
  * 
  * ClassName: ShareYiXin<br>
  * Description: 易信分享请求封装类
- * 
- * @author gaojian<br>
- *         email:gaojian@raiyi.com
- * @version
- * @since Ver 1.1
- * @Date 2014 2014-3-14 下午2:16:36
- * @see
  */
 public class ShareYiXin {
 

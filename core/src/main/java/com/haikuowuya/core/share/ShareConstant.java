@@ -5,22 +5,50 @@ package com.haikuowuya.core.share;
  */
 public class ShareConstant
 {
-
+    /***
+     * 短信分享类型
+     */
     public static final int SMS_SHARE = 0;
 
+    /***
+     * 邮件分享类型
+     */
     public static final int EMAIL_SHARE = 1;
-
+    /***
+     * 新浪微博分享类型
+     */
     public static final int SINA_WEIBO_SHARE = 2;
 
+    /**
+     * 微信分享类型
+     */
     public static final int WEIXIN_FRIEND_SHARE = 3;
+    /***
+     * 微信朋友圈分享类型
+     */
 
     public static final int WEIXIN_FRIENDS_SHARE = 4;
+    /***
+     * 易信分享类型
+     */
 
     public static final int YIXIN_FRIEND_SHARE = 5;
+    /**
+     * 易信朋友圈分享类型
+     */
 
     public static final int YIXIN_FRIENDS_SHARE = 6;
+    /***
+     * QQ分享类型
+     */
     public static final int QQ_SHARE = 7;
+    /***
+     * QQ空间分享类型
+     */
     public static final int QQ_QZONE_SHARE = 8;
+    /***
+     * 复制
+     */
     public static final int COPY_SHARE = 9;
 
     public static final String SMS_SHARE_S = "sms";
@@ -40,27 +68,29 @@ public class ShareConstant
     public static final String QQ_QZONE = "qzone";
     public static final String COPY = "copy";
 
-    public static final String DEFAULT_SHARE_URL = "http://m.locoso.com/2/mobileclient.jsp";
+    public static final String DEFAULT_SHARE_URL = "http://haikuowuya.com";
 
-    public static final String DEFAULT_SHARE_TITLE = "本地搜";
+    public static final String DEFAULT_SHARE_TITLE = "HKWY";
 
-    public static final String DEFAULT_SHARE_CONTENT = " 本地搜(Locoso)是全球最大的中文黄页服务商，汇集了海量的商家企业信息，提供最全面和完善的行业企业分类信息搜索，企业建站等推广服务，为企业与用户进行更方便快捷的信息交互和共享架起一座桥梁。";
-
+    public static final String DEFAULT_SHARE_CONTENT = " HKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWYHKWY ";
     public static final String SHARE_TYPE_CONTENT = "shareTypeContent";
 
-    //微信分享相关ID
     /**
      * 微信APP_ID
      */
-    public static final String WEIXIN_APP_ID = "wx4f6df625470bfb6f";
 
-    //新浪相关分享ID
+    public static final String WEI_XIN_APP_ID = "wx3e5c74e6e922e738";
+    public static final String WEI_XIN_APP_SECRET = "f6603dfe4f6cb4f72b18a0a34ab1d0b6";
+
     /**
      * 新浪微博分享APP_ID
      */
-    public static final String SINA_CONSUMER_KEY = "3677423343";//"966056985";
+    public static final String SINA_APP_ID = "1447281316"; //"3677423343";//"966056985";
+    public static final String SINA_APP_SECRET = "e1002fe86444ad86433dd111f789d7be";
 
-    public static final String SINA_REDIRECT_URL = "http://m.locoso.com/2/mobileclient.jsp";
+    /**
+     * QQ分享APP_ID
+     */
+    public static final String QQ_APP_ID = "1104965199";
 
-    public static final String SINA_CONSUMER_SECRET = "b16928c8bf95ee5272e7f055a2dab6c1";
 }

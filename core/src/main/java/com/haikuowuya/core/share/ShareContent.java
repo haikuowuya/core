@@ -10,10 +10,7 @@ import java.io.Serializable;
 
 public class ShareContent implements Serializable {
 
-    private static final long serialVersionUID = -5860450411215821159L;
-
     private String shareJson;
-
     public ShareContent(String shareJson) {
         setShareJson(shareJson);
     }

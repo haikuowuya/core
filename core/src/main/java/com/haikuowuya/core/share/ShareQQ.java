@@ -13,11 +13,10 @@ import com.tencent.tauth.UiError;
 public class ShareQQ
 {
 
-    private Tencent mTencent;
-
-    private void doTencentRegister(Activity activity)
+    private static Tencent doTencentRegister(Activity activity)
     {
-        mTencent = Tencent.createInstance(ShareUtils.QQ_APP_ID, activity);
+        Tencent tencent = Tencent.createInstance(ShareConstant.QQ_APP_ID, activity);
+        return tencent;
     }
 
     /**
@@ -26,15 +25,15 @@ public class ShareQQ
      * @param params
      */
 
-    public void doShareToQzone(final Activity activity, final Bundle params)
+    public static void doShareToQzone(final Activity activity, final Bundle params)
     {
-        doTencentRegister(activity);
+        final Tencent tencent = doTencentRegister(activity);
         activity.runOnUiThread(new Runnable()
         {
             public void run()
             {
                 System.out.println("分享到QQ空间");
-                mTencent.shareToQzone(activity, params, mIUiListener);
+                tencent.shareToQzone(activity, params, sIUiListener);
             }
         });
 
@@ -45,20 +44,20 @@ public class ShareQQ
      *
      * @param params
      */
-    public void doShareToQQ(final Activity activity, final Bundle params)
+    public static void doShareToQQ(final Activity activity, final Bundle params)
     {
-        doTencentRegister(activity);
+        final Tencent tencent = doTencentRegister(activity);
         activity.runOnUiThread(new Runnable()
         {
             @Override
             public void run()
             {
-                mTencent.shareToQQ(activity, params, mIUiListener);
+                tencent.shareToQQ(activity, params, sIUiListener);
             }
         });
     }
 
-    public IUiListener mIUiListener = new IUiListener()
+    public static IUiListener sIUiListener = new IUiListener()
     {
         @Override
         public void onComplete(Object object)

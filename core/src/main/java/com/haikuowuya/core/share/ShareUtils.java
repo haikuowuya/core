@@ -1,6 +1,8 @@
 package com.haikuowuya.core.share;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -165,7 +167,7 @@ public class ShareUtils
     public static void shareWithWeixin(Activity activity, ShareContent sharecontent, boolean isPengYouQuan, Bitmap bitmap)
     {
         JsonShareItem shareWeixinItem;
-        ShareWeixin shareWeixin = new ShareWeixin(activity);
+
         if (isPengYouQuan)
         {
             shareWeixinItem = sharecontent.getShareContent(ShareConstant.WEIXIN_FRIENDS_SHARE_S);
@@ -192,7 +194,8 @@ public class ShareUtils
             bitmap = BitmapFactory.decodeResource(activity.getResources(), R.drawable.ic_crop);
         }
         String filename = ShareUtils.decodeBitmap2File(activity, bitmap);
-        shareWeixin.shareWeixin(isPengYouQuan, activity, filename, share_url, share_title, share_content);
+
+        ShareWeixin.shareWeixin(activity, isPengYouQuan, filename, share_url, share_title, share_content);
     }
 
     public static final void shareWithQQ(Activity activity, ShareContent shareContent, boolean withQzone, Bitmap bitmap)
@@ -211,7 +214,7 @@ public class ShareUtils
         {
             shareItem = shareContent.getShareContent(ShareConstant.QQ);
         }
-        ShareQQ shareQQ = new ShareQQ();
+
         String share_title = "测试QQ分享", share_content = "测试QQ分享", share_url = "http://haikuowuya.com";
         if (null != shareItem)
         {
@@ -220,21 +223,41 @@ public class ShareUtils
             share_url = shareItem.getShareUrl();
         }
         Bundle bundle = new Bundle();
-
+//        如果需要分享到QQ空间，可以加入一个参数：
+//        params.putInt(QQShare.SHARE_TO_QQ_EXT_INT,  QQShare.SHARE_TO_QQ_FLAG_QZONE_AUTO_OPEN);
         if (withQzone)
         {
             bundle.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
+            bundle.putInt(QQShare.SHARE_TO_QQ_EXT_INT, QQShare.SHARE_TO_QQ_FLAG_QZONE_AUTO_OPEN);
             bundle.putString(QzoneShare.SHARE_TO_QQ_TITLE, share_title);
             bundle.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, share_url);
             bundle.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, share_content);
-            shareQQ.doShareToQzone(activity, bundle);
+            ShareQQ.doShareToQQ(activity, bundle);
+            // ShareQQ.doShareToQzone(activity,bundle);  // 无效？？？？？？？
+
         } else
         {
             bundle.putString(QQShare.SHARE_TO_QQ_TITLE, share_title);
             bundle.putString(QQShare.SHARE_TO_QQ_TARGET_URL, share_url);
             bundle.putString(QQShare.SHARE_TO_QQ_SUMMARY, share_content);
-            shareQQ.doShareToQQ(activity, bundle);
+            ShareQQ.doShareToQQ(activity, bundle);
         }
+    }
+
+    public static void ShareCopyToClip(Activity activity, ShareContent shareContent)
+    {
+        JsonShareItem shareItem = shareContent.getShareContent(ShareConstant.COPY);
+        String share_title = "测试QQ分享", share_content = "测试QQ分享", share_url = "http://haikuowuya.com";
+        if (null != shareItem)
+        {
+            share_title = shareItem.getShareTitle();
+            share_content = shareItem.getShareContent();
+            share_url = shareItem.getShareUrl();
+        }
+        ClipboardManager clipboardManager = (ClipboardManager) activity.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("分享内容", share_title + "  " + share_content + "  " + share_url);
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(activity, "复制成功", Toast.LENGTH_SHORT).show();
     }
 
     public static byte[] bmpToByteArray(final Bitmap bmp, final boolean needRecycle)
@@ -311,5 +334,4 @@ public class ShareUtils
         return null;
     }
 
-    public static final String QQ_APP_ID = "1104965199";
 }

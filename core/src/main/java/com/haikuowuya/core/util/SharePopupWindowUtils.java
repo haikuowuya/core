@@ -197,7 +197,12 @@ public class SharePopupWindowUtils
             } else if (shareItem.type == ShareConstant.QQ_QZONE_SHARE)
             {
                 ShareUtils.shareWithQQ(activity, shareContent, true, mBitmap);
-            } else
+            }
+            else if(shareItem.type ==ShareConstant.COPY_SHARE)
+            {
+                ShareUtils.ShareCopyToClip(activity, shareContent);
+            }
+            else
             {
                 activity.showToast("未知错误，请重试");
             }
