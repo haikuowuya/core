@@ -61,12 +61,16 @@ public class SharePopupWindowUtils
     public static void showShare(BaseHKWYActivity baseActivity, String shareContent)
     {
         initPopupWindow(baseActivity);
-        int[] shareTypes = new int[]{ShareConstant.WEIXIN_FRIEND_SHARE, ShareConstant.WEIXIN_FRIENDS_SHARE, ShareConstant.SINA_WEIBO_SHARE, ShareConstant.SMS_SHARE, ShareConstant.EMAIL_SHARE, ShareConstant.QQ_SHARE, ShareConstant.QQ_QZONE_SHARE, ShareConstant.COPY_SHARE};
-        String[] shareTypeNames = new String[]{"微信", "朋友圈", "微博", "信息", "邮件", "QQ好友", "QQ空间", "剪切板"};
-        Integer[] shareTypeIcons = new Integer[]{R.mipmap.share_weixin_bg, R.mipmap.share_weixinq_bg, R.mipmap.share_weibo_bg, R.mipmap.share_sms_bg, R.mipmap.share_email_bg, R.mipmap.ic_share_qq, R.mipmap.ic_share_qq_qzone, R.mipmap.share_default_ic};
+        int[] shareTypes = new int[]{ShareConstant.WEIXIN_FRIEND_SHARE, ShareConstant.WEIXIN_FRIENDS_SHARE, ShareConstant.SINA_WEIBO_SHARE, ShareConstant.SMS_SHARE, ShareConstant.EMAIL_SHARE, ShareConstant.QQ_SHARE, ShareConstant.QQ_QZONE_SHARE, ShareConstant.COPY_SHARE, ShareConstant.YIXIN_FRIEND_SHARE, ShareConstant.YIXIN_FRIENDS_SHARE};
+        String[] shareTypeNames = new String[]{"微信", "朋友圈", "微博", "信息", "邮件", "QQ好友", "QQ空间", "剪切板", "易信", "易信朋友圈"};
+        Integer[] shareTypeIcons = new Integer[]{R.mipmap.share_weixin_bg, R.mipmap.share_weixinq_bg, R.mipmap.share_weibo_bg, R.mipmap.share_sms_bg, R.mipmap.share_email_bg, R.mipmap.ic_share_qq, R.mipmap.ic_share_qq_qzone, R.mipmap.share_default_ic, R.mipmap.ic_share_yinxin, R.mipmap.ic_share_yinxin};
         List<ShareGridAdapter.ShareItem> shareItems = new LinkedList<>();
         int count = shareTypes.length >= shareTypeNames.length ? shareTypeNames.length : shareTypes.length;
         count = count >= shareTypeIcons.length ? shareTypeIcons.length : count;
+        if (count > 8)
+        {
+            count = 8;//去除易信
+        }
         for (int i = 0; i < count; i++)
         {
             ShareGridAdapter.ShareItem shareItem = new ShareGridAdapter.ShareItem();
@@ -176,7 +180,6 @@ public class SharePopupWindowUtils
                 ShareUtils.shareWithSMS(activity, shareContent);
             } else if (shareItem.type == ShareConstant.WEIXIN_FRIEND_SHARE)
             {
-
                 ShareUtils.shareWithWeixin(activity, shareContent, false, mBitmap);
             } else if (shareItem.type == ShareConstant.WEIXIN_FRIENDS_SHARE)
             {
@@ -197,12 +200,10 @@ public class SharePopupWindowUtils
             } else if (shareItem.type == ShareConstant.QQ_QZONE_SHARE)
             {
                 ShareUtils.shareWithQQ(activity, shareContent, true, mBitmap);
-            }
-            else if(shareItem.type ==ShareConstant.COPY_SHARE)
+            } else if (shareItem.type == ShareConstant.COPY_SHARE)
             {
                 ShareUtils.ShareCopyToClip(activity, shareContent);
-            }
-            else
+            } else
             {
                 activity.showToast("未知错误，请重试");
             }

@@ -2,6 +2,7 @@ package com.haikuowuya.core.base;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.haikuowuya.core.R;
+import com.haikuowuya.core.util.PhotoUtils;
+import com.haikuowuya.core.util.ViewUtils;
 
 /**
  * 使用到的基类Activity
@@ -253,4 +256,10 @@ public abstract class BaseHKWYActivity extends AppCompatActivity implements IAct
         hideSoftKeyBorard();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        PhotoUtils.onActivityResult(this, requestCode, resultCode, data);
+    }
 }

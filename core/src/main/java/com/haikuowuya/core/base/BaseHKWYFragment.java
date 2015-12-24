@@ -23,11 +23,7 @@ public abstract class BaseHKWYFragment extends Fragment implements IFragmentTitl
         mFragment = this;
     }
 
-    @Override
-    public void onPause()
-    {
-        super.onPause();
-    }
+
 
     @Override
     public void onResume()

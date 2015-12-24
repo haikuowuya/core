@@ -4,6 +4,7 @@
         <item name="android:background">#00000000</item>
         <!--标题栏的高度-->
         <item name="title_bar_height">48dp</item>
+        <item name="colorPrimary">@color/color_title_background_color</item>
     </style>
 
     <style name="AppTheme.Dark" parent="HKWY.Dark">

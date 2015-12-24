@@ -34,6 +34,9 @@
             android:name=".TestThemeActivity"
             android:label="@string/tv_activity_test_theme"/>
         <activity
+            android:name=".TestSlidingMenuActivity"
+            android:label="@string/tv_activity_test_sliding_menu"/>
+        <activity
             android:name="com.haikuowuya.demo.wxapi.WXEntryActivity"
             android:label="@string/tv_activity_wx"/>
         <activity
@@ -47,6 +50,7 @@
         <activity
             android:name="com.haikuowuya.demo.wxapi.ShowFromWXActivity"
             android:label="@string/tv_activity_show_wx"/>
+
         <receiver
             android:name="com.haikuowuya.demo.wxapi.AppRegister"
             android:permission="com.tencent.mm.plugin.permission.SEND">
@@ -54,24 +58,27 @@
                 <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP"/>
             </intent-filter>
         </receiver>
+
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="tencent1104965199" />
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="tencent1104965199"/>
                 <!-- 1104965199 -->
             </intent-filter>
         </activity>
 
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
         </activity>
 
     </application>

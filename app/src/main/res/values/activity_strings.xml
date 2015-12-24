@@ -10,5 +10,6 @@
     <string name="tv_activity_test_crop">测试选取图片</string>
     <string name="tv_activity_test_theme">测试主题</string>
     <string name="tv_activity_test_share">测试分享</string>
+    <string name="tv_activity_test_sliding_menu">测试侧滑</string>
     <string name="tv_activity_test_send_sms">测试发送短信验证码</string>
 </resources>

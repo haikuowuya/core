@@ -1,12 +1,11 @@
 package com.haikuowuya.core.base;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.haikuowuya.core.util.DensityUtils;
 import com.haikuowuya.core.R;
 import com.haikuowuya.core.slidingmenu.SlidingMenu;
+import com.haikuowuya.core.util.DensityUtils;
 
 
 public abstract class BaseHKWYSlidingMenuActivity extends BaseHKWYTitleActivity
@@ -71,17 +70,6 @@ public abstract class BaseHKWYSlidingMenuActivity extends BaseHKWYTitleActivity
         // 设置隐藏在AboveMenu菜单后面的菜单
         getSupportFragmentManager().beginTransaction().replace(R.id.menu_container, fragmentAsMenu()).commit();
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-        BaseHKWYFragment baseHKWYFragment = fragmentAsMenu();
-        if (null != baseHKWYFragment)
-        {
-            baseHKWYFragment.onActivityResult(requestCode, resultCode, data);
-        }
     }
 
     public abstract BaseHKWYFragment fragmentAsMenu();

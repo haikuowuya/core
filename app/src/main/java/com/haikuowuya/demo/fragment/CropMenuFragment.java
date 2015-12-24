@@ -19,11 +19,11 @@ import butterknife.OnClick;
 /**
  * Created by Steven on 2015/11/3 0003.
  */
-public class CropFragment extends BaseFragment
+public class CropMenuFragment extends BaseFragment
 {
-    public static CropFragment newInstance()
+    public static CropMenuFragment newInstance()
     {
-        CropFragment fragment = new CropFragment();
+        CropMenuFragment fragment = new CropMenuFragment();
         return fragment;
     }
 
@@ -32,7 +32,7 @@ public class CropFragment extends BaseFragment
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_crop, container, false);
+        return inflater.inflate(R.layout.fragment_crop_menu, container, false);
     }
 
     @OnClick(R.id.tv_select_image)
